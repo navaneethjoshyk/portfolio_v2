@@ -36,7 +36,7 @@ export function MobileNav() {
           <div className="flex items-center justify-center py-8 px-6 border-b bg-muted/20">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-3xl font-black text-foreground tracking-tight">
-                supers
+                Navaneeth
               </span>
             </Link>
           </div>
@@ -61,14 +61,6 @@ export function MobileNav() {
               </Link>
               <Separator className="my-2" />
               <Link
-                href="/posts/blog"
-                onClick={handleLinkClick}
-                className="flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-muted hover:text-foreground text-muted-foreground"
-              >
-                Blog
-              </Link>
-              <Separator className="my-2" />
-              <Link
                 href="/info"
                 onClick={handleLinkClick}
                 className="flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-muted hover:text-foreground text-muted-foreground"
@@ -78,10 +70,10 @@ export function MobileNav() {
             </nav>
           </div>
 
-          {/* Footer section (optional) */}
+          {/* Footer section */}
           <div className="border-t bg-muted/10 p-6">
             <p className="text-xs text-muted-foreground text-center font-medium">
-              © {new Date().getFullYear()} supers
+              © {new Date().getFullYear()} Navaneeth Joshy K
             </p>
           </div>
         </div>

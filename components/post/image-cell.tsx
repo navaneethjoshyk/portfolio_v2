@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 interface ImageCellProps {
   content: {
     url: string;
@@ -11,18 +9,20 @@ interface ImageCellProps {
 
 export function ImageCell({ content }: ImageCellProps) {
   // Don't render if URL is empty or invalid
-  if (!content?.url || content.url.trim() === '') {
+  if (!content?.url || content.url.trim() === "") {
     return null;
   }
 
   return (
-    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg">
-      <Image
+    <div className="w-full flex justify-center overflow-hidden rounded-lg bg-muted/30">
+      {/* Rendered at natural aspect ratio (no forced crop) so portrait
+         screenshots, wide screenshots, and logos all display in full;
+         height is capped so very tall images don't dominate the page. */}
+      <img
         src={content.url}
-        alt={content.alt || ''}
-        fill
-        className="object-cover"
-        sizes="(min-width: 1280px) 1200px, (min-width: 780px) 720px, 100vw"
+        alt={content.alt || ""}
+        className="w-auto h-auto max-w-full max-h-[70vh] object-contain"
+        loading="lazy"
       />
     </div>
   );

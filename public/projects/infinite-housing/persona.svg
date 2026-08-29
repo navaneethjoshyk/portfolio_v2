@@ -1,0 +1,52 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="frame">
+      <rect x="0" y="0" width="400" height="400" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- background -->
+    <rect width="400" height="400" fill="#e8ede9"/>
+    <circle cx="200" cy="430" r="230" fill="#cfe0d3"/>
+
+    <!-- ground -->
+    <rect x="0" y="360" width="400" height="40" fill="#a9c2ae"/>
+
+    <!-- house outline (eco housing motif) -->
+    <g stroke="#3f6b4a" stroke-width="6" fill="none" opacity="0.55">
+      <path d="M40 300 L40 220 L100 170 L160 220 L160 300 Z" />
+      <line x1="40" y1="220" x2="160" y2="220" />
+    </g>
+    <g stroke="#3f6b4a" stroke-width="6" fill="none" opacity="0.4">
+      <path d="M270 300 L270 240 L320 205 L370 240 L370 300 Z" />
+    </g>
+
+    <!-- leaf accent -->
+    <path d="M330 90 C 300 100, 290 140, 320 165 C 350 140, 350 100, 330 90 Z" fill="#4c8c5c" opacity="0.85"/>
+    <path d="M320 165 C 320 145, 325 120, 335 100" stroke="#2f5d3b" stroke-width="3" fill="none" opacity="0.6"/>
+
+    <!-- figure: builder with hard hat -->
+    <g>
+      <!-- shoulders / torso -->
+      <path d="M120 400 C120 300 150 260 200 260 C250 260 280 300 280 400 Z" fill="#2f5d3b"/>
+      <!-- hi-vis strap -->
+      <path d="M160 270 L185 400" stroke="#f2c14e" stroke-width="10" opacity="0.9"/>
+      <path d="M240 270 L215 400" stroke="#f2c14e" stroke-width="10" opacity="0.9"/>
+
+      <!-- neck -->
+      <rect x="185" y="215" width="30" height="35" rx="10" fill="#e3b48a"/>
+
+      <!-- head -->
+      <circle cx="200" cy="185" r="48" fill="#e9bd93"/>
+
+      <!-- hard hat -->
+      <path d="M148 175 C148 135 176 108 200 108 C224 108 252 135 252 175 Z" fill="#4c8c5c"/>
+      <rect x="140" y="170" width="120" height="16" rx="8" fill="#3f7a4d"/>
+    </g>
+
+    <!-- corner tag -->
+    <rect x="24" y="24" width="150" height="34" rx="17" fill="#ffffff" opacity="0.85"/>
+    <text x="40" y="46" font-family="monospace" font-size="14" fill="#2f5d3b" letter-spacing="1">ECO-BUILDER</text>
+  </g>
+</svg>

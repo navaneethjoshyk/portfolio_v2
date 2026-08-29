@@ -1,113 +1,575 @@
-// Auto-generated posts file
-// Version: v20250819-165754
-// Generated: 2025-08-19T16:57:55.289Z
-// Source: API (http://localhost:3001/dev/posts - dev environment)
+// Static project data — hardcoded, no backend / CMS involved.
+// Edit this file directly to add, remove, or update projects.
 
 import { Post } from "@/types/post";
 
 export const posts: Post[] = [
   {
-    "id": "MEILCE2Q09OAFH7ZDC2G",
-    "title": "Perimeter: An Egress Traffic Controller",
-    "slug": "perimeter-an-egress-traffic-controller",
-    "status": "published",
-    "featured": false,
-    "type": "project",
-    "thumbnail": {
-      "url": "https://supers-isuryanarayanan-prod.s3.ap-south-1.amazonaws.com/64b32e4e-71fb-4df1-b7db-b48ed604ac23.png",
-      "alt": "perimeter logo"
+    id: "care-calendar",
+    title: "Care Calendar",
+    slug: "care-calendar",
+    status: "published",
+    featured: false,
+    type: "project",
+    thumbnail: {
+      url: "/projects/care-calendar/cover.svg",
+      alt: "Care Calendar cover",
     },
-    "excerpt": "Perimeter is a centralized egress traffic controller designed for distributed systems. It ensures that all outgoing API requests from microservices respect the rate limits imposed by external partners.",
-    "createdAt": "2025-08-19T13:40:04.034Z",
-    "updatedAt": "2025-08-19T16:06:32.270Z",
-    "viewCount": 0,
-    "cells": [
+    excerpt:
+      "A unified healthcare booking platform designed to cut through the navigation complexity and slow performance that plague newcomer-facing scheduling systems.",
+    createdAt: "2026-01-15T00:00:00.000Z",
+    updatedAt: "2026-04-28T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
       {
-        "id": "MEIQKRHHBYN6YN0TBDO",
-        "type": "markdown",
-        "content": "Perimeter is an egress traffic controller built for distributed systems that ensures all outgoing requests adhere to the rate limits of external partners. This article explores the need for such a solution, the architecture behind Perimeter, and how it helps WareIQ monitor and manage outbound API traffic effectively.",
-        "order": 1
-      },
-      {
-        "id": "MEIQKRHOV3L95PHL0YK",
-        "type": "markdown",
-        "content": "## Understanding WareIQ’s platform and the need for Perimeter\n\nWareIQ is a logistics middleware that seamlessly connects merchants to various sales channels, warehouse management systems and delivery partners. WareIQ platform interacts with various third party systems as mentioned above via APIs, to maintain a single source-of-truth and provide data consistency for our customers as far as the e-commerce order related details are concerned.\n\nCurrently, WareIQ makes over **1.5 million** API requests daily across our partners, and this number is climbing swiftly as we onboard more clients and partners. WareIQ platform is comprised of multiple micro-services. As each micro-service can call same external partner simultaneously for different functionalities, we’ve noticed an increasing number of request failures due to rate limits being hit on these external partners.\n\nThis led us to realize that rate limiting solely at the individual micro-service level is insufficient. We needed a centralized traffic controller that shapes egress traffic being generated across all our micro-services, so that we stay within the bounds of each external partner’s rate limits.\n\nSuppose we have a service that fetches orders from Shopify, which has a rate limit of 2 requests per second. If we have 10 instances of this service running, the combined rate limit would be 20 requests per second in the worst case scenario. However, if all 10 instances are making requests simultaneously, the actual limit we must adhere to is still 2 requests per second. This is where Perimeter comes into play. It ensures that the total rate limit is not exceeded across all instances, maintaining smooth and efficient operations.\n\nBy implementing Perimeter, we centralized rate limiting and are effectively managing our API requests and ensuring we meet the rate limits set by our external partners.",
-        "order": 2
-      },
-      {
-        "id": "MEIQKRI3B5Z4J9EW71P",
-        "type": "image",
-        "content": "\"\\\"\\\\\\\"{\\\\\\\\\\\\\\\"url\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"https://supers-isuryanarayanan-prod.s3.ap-south-1.amazonaws.com/d5c107dd-e4b7-4497-818e-f188f1719ab8.png\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"alt\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"how wareiq communicates\\\\\\\\\\\\\\\"}\\\\\\\"\\\"\"",
-        "order": 3
-      },
-      {
-        "id": "MEIQKRI8CMBN21HMO8G",
-        "type": "markdown",
-        "content": "## Requirements and research\n\nAddressing the issue of rate limiting at the network level is indeed an efficient solution. However, it presents certain challenges. We could not afford to drop any request that hit rate-limit. If a request is made that exceeds the rate limit, it must be queued and processed soon, ensuring no loss of requests.\n\nIn our research into network layer proxies for rate limiting, we considered Envoy Proxy and Nginx. However, we discovered that both solutions do not meet our requirements. Specifically, both Envoy and Nginx drop requests that exceed the rate limit instead of queuing them for later processing. This behavior does not align with our need to honor all outgoing requests.\n\nAnother requirement was to have a rate limiter where the configured rate limits were dynamic and could be updated on the fly without restarting the service. Also the service should react to the configuration changes in real-time.\n\nNetwork layer solutions for this requirement would require a lot of custom code to be written on top of the existing solutions. This would make the solution complex and difficult to maintain.\n\nSince an application layer best fits these crucial requirements, we decided to build Perimeter as an application layer rate limiter.",
-        "order": 4
-      },
-      {
-        "id": "MEIQKRII6GFILI1PTWB",
-        "type": "image",
-        "content": "\"\\\"\\\\\\\"{\\\\\\\\\\\\\\\"url\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"https://supers-isuryanarayanan-prod.s3.ap-south-1.amazonaws.com/33471a69-f15a-483b-98fa-05216c037c06.png\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"alt\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"resource rate limits\\\\\\\\\\\\\\\"}\\\\\\\"\\\"\"",
-        "order": 5
-      },
-      {
-        "id": "MEIQKRIPG1YXU9ZQLDA",
-        "type": "image",
-        "content": "\"\\\"\\\\\\\"{\\\\\\\\\\\\\\\"url\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"https://supers-isuryanarayanan-prod.s3.ap-south-1.amazonaws.com/a191f7b4-8b6b-4319-b47a-3b7b040b887f.png\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"alt\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"How wareiq was restricting themselves\\\\\\\\\\\\\\\"}\\\\\\\"\\\"\"",
-        "order": 6
-      },
-      {
-        "id": "MEIQKRIU56T9D60SC75",
-        "type": "markdown",
-        "content": "## Understanding Perimeter\nWareIQ uses a microservices architecture and these services are managed in a kubernetes cluster. All key services are written in Python. Perimeter sits between these microservices and the external systems.\n\nSince Perimeter is a critical component, there are 2 questions that we needed to answer before we started building Perimeter:\n\n### How do we ensure that the rate limits are enforced correctly?\nWe implemented a token bucket algorithm to enforce rate limits. The token bucket algorithm is a widely used algorithm for rate limiting. It works by adding tokens to a bucket at a fixed rate. When a request comes in, a token is removed from the bucket. If there are no tokens in the bucket, the request will wait till there is a token available to consume. This ensures that the rate limit is enforced correctly, and the requests are processed in a timely manner.\n\nTokens are added to the bucket based on configurations saved in a postgresql database. This allows us to change the rate limits on the fly without having to restart the service.\n\n### How do we ensure Perimeter is highly available?\nAll our services are in a Kubernetes cluster, and perimeter is deployed as another service in the cluster. Even though having multiple replicas of Perimeter is desirable for high availability, it brings up a new challenge. If we have multiple replicas of Perimeter, how do we ensure that the rate limits are enforced correctly across all these replicas? We decided to park this problem for the future and make the single-replica Perimeter service as robust and fault-tolerant as possible.\n\nPerimeter is a single central service that is deployed as a Kubernetes deployment with a single replica. This ensures that all requests pass through the same instance of Perimeter, and the rate limits are enforced correctly. An instance of perimeter is set to be available at all times, and if it goes down, the Kubernetes deployment ensures that a new instance is spun up immediately.\n\nAdditionally, as a fallback, we have updated all our services to have a retry mechanism in case of a rate limit error. This ensures that even if Perimeter goes down, the services will continue to function, albeit with a higher failure rate.\n\nSince it is going to be a single instance, the service itself needed to be fast and lightweight. We chose to write Perimeter in Golang, as it is known for its speed and efficiency in handling concurrent requests.",
-        "order": 7
-      },
-      {
-        "id": "MEIQKRJ2UK0HU06JU",
-        "type": "markdown",
-        "content": "## Components of Perimeter\nPerimeter has four main components:\n\n**Configurations**: Rate limits are saved in a PostgreSQL database. Perimeter reads these configurations and creates Beats for each configuration. A Beat is a goroutine that adds tokens to the bucket at a fixed rate. These configurations are updated periodically, and Beats are created, updated, or destroyed based on the configurations.\n\n**Beats**: Each Beat is responsible for adding tokens to the bucket at a fixed rate. When a request comes in, the Beat checks if there are enough tokens in the bucket to process the request. If there are enough tokens, the request is processed, and a token is removed from the bucket. If there are not enough tokens, the request is queued and processed as soon as there are enough tokens in the bucket.\n\n**Structured Logging**: Perimeter logs all the requests that come in and the rate limits that are enforced. This allows us to monitor the traffic and ensure the rate limits are enforced correctly.\n\n**Alerts**: We have set up alerts for various metrics to notify us when thresholds are exceeded, enabling us to respond swiftly and maintain system performance.\n\nPerimeter utilizes the blocking behavior of Go channels to queue requests when the rate limit is exceeded. This ensures that no requests are dropped and all requests are processed as soon as the rate limit allows.",
-        "order": 8
-      },
-      {
-        "id": "MEIQKRJ7OEYD1ZU0RCF",
-        "type": "image",
-        "content": "\"\\\"\\\\\\\"{\\\\\\\\\\\\\\\"url\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"https://supers-isuryanarayanan-prod.s3.ap-south-1.amazonaws.com/f9c35418-8b08-421d-977f-1513b31d06dd.png\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"alt\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"perimeter setup\\\\\\\\\\\\\\\"}\\\\\\\"\\\"\"",
-        "order": 9
-      },
-      {
-        "id": "MEIQKRJMSGPQEJ9ZMZJ",
-        "type": "markdown",
-        "content": "## Testing Perimeter’s Performance and Reliability\n\nTo ensure Perimeter can handle the requirements of our system, we conducted a variety of tests to evaluate its performance and reliability. We built our own load simulator using a simple Python script that sends requests to Perimeter at a configurable rate or load. Additionally, we incorporated our own custom services, each with different rate limits, to test Perimeter’s flexibility and enforcement capabilities. We spun up different docker containers corresponding to some of our micro-services and triggers, enabling us to simulate various network conditions and configurations. This comprehensive testing approach ensured that Perimeter could handle the load and enforce rate limits correctly across diverse scenarios.",
-        "order": 10
-      },
-      {
-        "id": "MEIQKRJVNOGKFDZM6UR",
-        "type": "markdown",
-        "content": "## Perimeter in Action\n\nPerimeter enhances the consistency of egress traffic and is now utilized to monitor and manage outgoing API traffic at WareIQ. Perimeter has enabled us to identify and resolve several previously undetected external API related issues within our system. We have established alerts for different metrics, helping us respond to issues quickly.",
-        "order": 11
-      },
-      {
-        "id": "MEIQKRK1CE0FSL36H2L",
-        "type": "markdown",
-        "content": "## Future Work\n- **Rate Limiting Types** - Currently, Perimeter only supports rate limiting based on the number of requests per rate period. We are working on adding more rate limiting types, such as API-level rate limiting and service-level rate limiting.\n- **Request Analytics** - We are adding request analytics to Perimeter. This will allow us to monitor traffic and identify patterns, helping us detect anomalies and respond quickly.\n- **Enhanced Alerting** - We are improving our alerting capabilities. This will allow us to set up alerts for different metrics and get notified when thresholds are crossed, ensuring proactive issue resolution.",
-        "order": 12
-      },
-      {
-        "id": "MEIQKRKAEHSY95LAVFL",
-        "type": "markdown",
-        "content": "# Conclusion\n\nPerimeter is a critical component in ensuring that WareIQ’s egress traffic adheres to the rate limits of external partners, enhancing system reliability and performance. By implementing Perimeter, we have centralized rate limiting, effectively managed our API requests, and ensured compliance with external rate limits. As we continue to develop Perimeter, we are focused on adding new features and improving existing capabilities to meet our growing needs.",
-        "order": 13
-      }
-    ]
-  }
-];
+        id: "care-calendar-1",
+        type: "markdown",
+        order: 1,
+        content: `Care Calendar reimagines healthcare booking for newcomers who find existing scheduling platforms difficult to navigate and slow to use. The goal was to turn a fragmented booking experience into a single, high-performance system that keeps caregivers oriented at every step.
 
-export const postsMetadata = {
-  version: "v20250819-165754",
-  generatedAt: "2025-08-19T16:57:55.289Z",
-  source: "api",
-  environment: "dev",
-  count: 1
-};
+**Responsibilities:** UI/UX Design, Full-Stack Development
+**Tools:** Figma, React, Tailwind CSS
+**Timeline:** January – April 2026`,
+      },
+      {
+        id: "care-calendar-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Context
+
+Healthcare access is challenging for newcomers, and the booking systems meant to help are often inefficient and complex.
+
+**The gap:** platforms are plagued by difficult navigation and slow performance.
+**The objective:** transform booking into a unified, high-performance ecosystem.`,
+      },
+      {
+        id: "care-calendar-3",
+        type: "markdown",
+        order: 3,
+        content: `## How Might We
+
+- **Efficiency** — reduce manual documentation by 50%?
+- **Cognitive load** — display alerts without causing fatigue?
+- **Accessibility** — design a UI operable with one hand?
+- **Data integrity** — ensure sync in low-connectivity zones?
+- **Scalability** — handle 200% surges during peak periods?
+- **Well-being** — celebrate completed tasks to boost morale?
+
+**Hypothesis:** implementing a traffic-controlled logic reduces fatigue and increases accuracy.`,
+      },
+      {
+        id: "care-calendar-4",
+        type: "image",
+        order: 4,
+        content: {
+          url: "/projects/care-calendar/info-architecture.svg",
+          alt: "Care Calendar information architecture",
+        },
+      },
+      {
+        id: "care-calendar-5",
+        type: "markdown",
+        order: 5,
+        content: `## User Persona — The Caregiver
+
+> "I need to know exactly what is next, right now."
+
+**Needs:** task sync, one-handed navigation.
+**Pains:** information overload, no offline support.`,
+      },
+      {
+        id: "care-calendar-6",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/care-calendar/persona.png",
+          alt: "Care Calendar caregiver persona",
+        },
+      },
+      {
+        id: "care-calendar-7",
+        type: "markdown",
+        order: 7,
+        content: `## Design Evolution
+
+The interface moved through low, mid, and high-fidelity passes, tightening the visual language and simplifying the booking flow at each stage.`,
+      },
+      {
+        id: "care-calendar-8",
+        type: "image",
+        order: 8,
+        content: {
+          url: "/projects/care-calendar/high-fi-1.png",
+          alt: "Care Calendar high-fidelity screens",
+        },
+      },
+      {
+        id: "care-calendar-9",
+        type: "image",
+        order: 9,
+        content: {
+          url: "/projects/care-calendar/high-fi-2.png",
+          alt: "Care Calendar high-fidelity screens",
+        },
+      },
+      {
+        id: "care-calendar-10",
+        type: "markdown",
+        order: 10,
+        content: `## Evaluation
+
+- **Desirability** — 94% of test participants reported decreased stress using the new flow.
+- **Feasibility** — seamless REST API integration into the existing scheduling backend.
+- **Viability** — an estimated 40% reduction in day-to-day operations overhead.`,
+      },
+    ],
+  },
+  {
+    id: "infinite-housing",
+    title: "Infinite Housing",
+    slug: "infinite-housing",
+    status: "published",
+    featured: true,
+    type: "project",
+    thumbnail: {
+      url: "/projects/infinite-housing/cover.png",
+      alt: "Infinite Housing cover",
+    },
+    excerpt:
+      "A capstone platform that turns sustainable-construction certification into a guided, mobile-first journey for manufacturers, contractors, and first-time builders.",
+    createdAt: "2026-01-10T00:00:00.000Z",
+    updatedAt: "2026-05-25T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "infinite-housing-1",
+        type: "markdown",
+        order: 1,
+        content: `Infinite Housing is a capstone project built around a new category of eco-friendly construction material — one with excellent insulation and thermal mass, but no clear path to market for the people who'd actually use it. The brief: make a credibility-building, mobile-first platform that turns a fragmented, paperwork-heavy certification process into something approachable.
+
+**Responsibilities:** UI/UX Design, Full-Stack Development
+**Tools:** Figma, React, Tailwind CSS, Node.js, MongoDB
+**Timeline:** January – May 2026`,
+      },
+      {
+        id: "infinite-housing-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Problem
+
+"I want to build sustainably — I just don't know where to start."
+
+Information about the material and its certification process was fragmented, the certification itself was complex, and none of it worked on mobile — even though most of the target audience was in the field, not at a desk.`,
+      },
+      {
+        id: "infinite-housing-3",
+        type: "markdown",
+        order: 3,
+        content: `## How Might We
+
+- Build credibility for a new category of construction material?
+- Make eco-materials feel approachable for first-time builders?
+- Simplify a complex certification process into clear steps?
+- Structure learning modules for varied skill levels?
+- Support multiple user types — manufacturers, contractors, and builders?
+- Keep users motivated through a multi-module curriculum?`,
+      },
+      {
+        id: "infinite-housing-4",
+        type: "image",
+        order: 4,
+        content: {
+          url: "/projects/infinite-housing/onboarding.png",
+          alt: "Infinite Housing onboarding flow",
+        },
+      },
+      {
+        id: "infinite-housing-5",
+        type: "markdown",
+        order: 5,
+        content: `## Microcopy Decisions
+
+Small wording choices carried a lot of the credibility-building work:
+
+- *"Welcome to Infinite Housing"* → *"Start your journey today"* — positions the action as a meaningful beginning, not just a button click.
+- A guided, step-by-step tone throughout, written like a knowledgeable mentor rather than a form.
+- A question invites the user in; a statement pushes them away — so onboarding copy leans on questions at every decision point.
+- Progress indicators reframe setbacks as forward motion instead of failure.`,
+      },
+      {
+        id: "infinite-housing-6",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/infinite-housing/dashboard.png",
+          alt: "Infinite Housing dashboard",
+        },
+      },
+      {
+        id: "infinite-housing-7",
+        type: "image",
+        order: 7,
+        content: {
+          url: "/projects/infinite-housing/modules.png",
+          alt: "Infinite Housing learning modules",
+        },
+      },
+      {
+        id: "infinite-housing-8",
+        type: "image",
+        order: 8,
+        content: {
+          url: "/projects/infinite-housing/form.png",
+          alt: "Infinite Housing certification form",
+        },
+      },
+      {
+        id: "infinite-housing-9",
+        type: "markdown",
+        order: 9,
+        content: `## Under the Hood
+
+The prototype is a real full-stack build rather than a static mockup: JWT authentication, a MongoDB-backed data layer, and a REST API support a modular licensing flow that scales across multiple user types and material categories.`,
+      },
+      {
+        id: "infinite-housing-10",
+        type: "image",
+        order: 10,
+        content: {
+          url: "/projects/infinite-housing/persona.svg",
+          alt: "Infinite Housing user persona",
+        },
+      },
+      {
+        id: "infinite-housing-11",
+        type: "markdown",
+        order: 11,
+        content: `## Outcome
+
+In testing, the onboarding flow read as clear and approachable for a completely new product category — validating that plain, encouraging copy and a step-by-step structure can do a lot of the trust-building work that a novel material otherwise has to earn on its own.`,
+      },
+    ],
+  },
+  {
+    id: "med-connect",
+    title: "Med Connect",
+    slug: "med-connect",
+    status: "published",
+    featured: true,
+    type: "project",
+    thumbnail: {
+      url: "/projects/med-connect/cover.png",
+      alt: "Med Connect cover",
+    },
+    excerpt:
+      "A B2B healthcare platform that unifies scattered patient records and referrals into one secure, real-time view for specialists.",
+    createdAt: "2025-09-05T00:00:00.000Z",
+    updatedAt: "2025-12-18T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "med-connect-1",
+        type: "markdown",
+        order: 1,
+        content: `Med Connect tackles a familiar healthcare problem: information scattered across systems, with no holistic view for the specialists who need it. The goal was to unify records and referrals behind a single, secure interface without burying anyone in medical jargon.
+
+**Role:** Lead UI/UX, Frontend Architecture
+**Tools:** Figma, Next.js, TypeScript
+**Timeline:** September – December 2025`,
+      },
+      {
+        id: "med-connect-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Problem
+
+Healthcare info is scattered, making a holistic view nearly impossible. The objective was to streamline referrals and provide instant, secure access to unified health metrics — unifying records with real-time communication between providers.`,
+      },
+      {
+        id: "med-connect-3",
+        type: "markdown",
+        order: 3,
+        content: `## How Might We
+
+- Create a seamless handover for specialists?
+- Ensure data is secure yet accessible?
+- Translate complex medical jargon into visuals?`,
+      },
+      {
+        id: "med-connect-4",
+        type: "image",
+        order: 4,
+        content: {
+          url: "/projects/med-connect/high-fi-1.jpg",
+          alt: "Med Connect high-fidelity interface",
+        },
+      },
+      {
+        id: "med-connect-5",
+        type: "markdown",
+        order: 5,
+        content: `## Usability Testing
+
+Five participants ran through a five-task script:
+
+1. **Find the Contact Us page** — all 5 found it quickly with no confusion.
+2. A follow-up task surfaced CTA confusion: participants weren't sure where a call-to-action would take them and struggled to navigate back. **Fix:** the destination was redesigned to read as an extension of the same page rather than a separate one.
+3. **Navigate to Services and list what's offered** — all 5 found the section and listed the services easily.
+4. A comprehension check on the UX writing.
+5. An open-ended best/worst impression — participants praised the color palette and clarity of the copy, with the CTA confusion (since addressed) as the only real criticism.`,
+      },
+      {
+        id: "med-connect-6",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/med-connect/low-fi-1.jpeg",
+          alt: "Med Connect low-fidelity wireframes",
+        },
+      },
+      {
+        id: "med-connect-7",
+        type: "image",
+        order: 7,
+        content: {
+          url: "/projects/med-connect/high-fi-2.png",
+          alt: "Med Connect high-fidelity interface",
+        },
+      },
+      {
+        id: "med-connect-8",
+        type: "markdown",
+        order: 8,
+        content: `## Outcome
+
+The redesigned handover flow and clarified CTA turned a scattered set of referral touchpoints into something specialists could move through without hesitation — with the color palette and copy clarity called out specifically in testing.`,
+      },
+    ],
+  },
+  {
+    id: "ocean-palette",
+    title: "Ocean Palette | The Art of the Plate",
+    slug: "ocean-palette",
+    status: "published",
+    featured: false,
+    type: "project",
+    thumbnail: {
+      url: "/projects/ocean-palette/cover.png",
+      alt: "Ocean Palette cover",
+    },
+    excerpt:
+      "\"The Art of the Plate\" — a high-aesthetic reservation experience for a fine-dining brand, designed to feel as curated as the menu itself.",
+    createdAt: "2026-02-01T00:00:00.000Z",
+    updatedAt: "2026-05-10T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "ocean-palette-1",
+        type: "markdown",
+        order: 1,
+        content: `Fine dining needed a digital presence that felt as curated as the menu itself. Ocean Palette is a high-aesthetic B2C experience built around that idea — a reservation flow that feels less like a form and more like a concierge service.
+
+**Role:** UI/UX Designer & Lead Developer
+**Tools:** Next.js, Framer Motion, Tailwind CSS`,
+      },
+      {
+        id: "ocean-palette-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Aesthetic Gap
+
+The objective: create a platform where every interaction feels sophisticated, clean, and effortless — a sensory experience, not just a booking utility.`,
+      },
+      {
+        id: "ocean-palette-3",
+        type: "image",
+        order: 3,
+        content: {
+          url: "/projects/ocean-palette/low-fi-1.jpeg",
+          alt: "Ocean Palette early exploration",
+        },
+      },
+      {
+        id: "ocean-palette-4",
+        type: "markdown",
+        order: 4,
+        content: `## Approach
+
+- **Brand identity & mood** established up front, before any screens were drawn.
+- **High-fidelity interface** prioritizing high-resolution imagery without sacrificing load times.
+- **Fluid transitions** that mirror the pacing of a multi-course tasting menu, using motion to carry the brand's sense of restraint and polish.
+- A **one-click reservation flow** designed to feel like a concierge service rather than a form.`,
+      },
+      {
+        id: "ocean-palette-5",
+        type: "image",
+        order: 5,
+        content: {
+          url: "/projects/ocean-palette/high-fi-1.jpg",
+          alt: "Ocean Palette high-fidelity interface",
+        },
+      },
+      {
+        id: "ocean-palette-6",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/ocean-palette/high-fi-2.jpg",
+          alt: "Ocean Palette high-fidelity interface",
+        },
+      },
+      {
+        id: "ocean-palette-7",
+        type: "markdown",
+        order: 7,
+        content: `## Outcome
+
+- Aesthetic scores increased by 45% during testing.
+- Drop-off rates fell 22% after moving to one-click booking.
+- Lighthouse performance scores held at 95+ despite the image-heavy design.`,
+      },
+    ],
+  },
+  {
+    id: "cred",
+    title: "Cred App UI",
+    slug: "cred",
+    status: "published",
+    featured: false,
+    type: "project",
+    thumbnail: {
+      url: "/projects/cred/cover.svg",
+      alt: "Cred app UI cover",
+    },
+    excerpt:
+      "A UI/UX exploration of CRED's fintech experience — building a \"Fort Knox\" aesthetic that makes bill payments feel like a reward instead of a chore.",
+    createdAt: "2026-06-01T00:00:00.000Z",
+    updatedAt: "2026-06-20T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "cred-1",
+        type: "markdown",
+        order: 1,
+        content: `CRED's product sits at an unusual intersection for fintech: it has to look trustworthy enough to hold financial data, yet feel rewarding enough that people open it voluntarily. This project is a UI/UX analysis and redesign exploration of that tension.
+
+**Focus:** Fintech UX Analysis
+**Category:** Fintech | UI/UX Design`,
+      },
+      {
+        id: "cred-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Psychology of Fintech
+
+Fintech interfaces usually optimize for utility, not desire. CRED's design language does the opposite — using neumorphic elements and haptic-style interaction cues to trigger a small hit of satisfaction during otherwise mundane flows like bill payments.`,
+      },
+      {
+        id: "cred-3",
+        type: "markdown",
+        order: 3,
+        content: `## How Might We
+
+- Build a "Fort Knox" aesthetic that signals security without feeling cold?
+- Make bill payments feel like a reward rather than an obligation?`,
+      },
+      {
+        id: "cred-4",
+        type: "image",
+        order: 4,
+        content: {
+          url: "/projects/cred/screen.png",
+          alt: "Cred app UI exploration",
+        },
+      },
+      {
+        id: "cred-5",
+        type: "markdown",
+        order: 5,
+        content: `## The Design System
+
+The exploration worked through several interface iterations focused on a copper-and-carbon high-fidelity palette — dark, metallic surfaces paired with warm amber accents to keep the "vault" feeling premium rather than sterile, while still guiding attention to the reward moments in each flow.`,
+      },
+    ],
+  },
+  {
+    id: "we-united",
+    title: "WeUnited Matrimony App UI",
+    slug: "we-united",
+    status: "published",
+    featured: false,
+    type: "project",
+    thumbnail: {
+      url: "/projects/we-united/screen-1.svg",
+      alt: "WeUnited app UI cover",
+    },
+    excerpt:
+      "A trust-first matrimony app UI that bridges traditional cultural values with a high-security, values-based matchmaking experience.",
+    createdAt: "2026-05-01T00:00:00.000Z",
+    updatedAt: "2026-06-05T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "we-united-1",
+        type: "markdown",
+        order: 1,
+        content: `WeUnited is a UI/UX case study for a matrimony platform aimed at high-stakes matchmaking — where trust, not swipes, is the product. The challenge was bridging traditional cultural values with a modern, high-security digital interface.
+
+**Role:** Lead UI/UX Designer & Developer
+**Tools:** Next.js, Tailwind v4, Framer Motion
+**Category:** High-stakes Matchmaking | UI/UX Design`,
+      },
+      {
+        id: "we-united-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Responsibility
+
+Matrimony platforms carry more responsibility than typical dating products — profile authenticity and safety matter more than engagement metrics. The design hypothesis: ID verification combined with values-based filtering would increase meaningful conversations, by making sure every profile a user sees is verified and genuinely compatible on the things that matter to them.`,
+      },
+      {
+        id: "we-united-3",
+        type: "markdown",
+        order: 3,
+        content: `## Security & Accessibility
+
+High-fidelity refinement focused on making verification feel reassuring rather than bureaucratic, and on keeping the interface accessible across a wide range of ages and technical comfort levels — a deliberate departure from typical dating-app visual language.`,
+      },
+      {
+        id: "we-united-4",
+        type: "image",
+        order: 4,
+        content: {
+          url: "/projects/we-united/screen-1.svg",
+          alt: "WeUnited interface exploration",
+        },
+      },
+      {
+        id: "we-united-5",
+        type: "image",
+        order: 5,
+        content: {
+          url: "/projects/we-united/screen-2.svg",
+          alt: "WeUnited interface exploration",
+        },
+      },
+      {
+        id: "we-united-6",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/we-united/screen-3.svg",
+          alt: "WeUnited interface exploration",
+        },
+      },
+      {
+        id: "we-united-7",
+        type: "markdown",
+        order: 7,
+        content: `## Outcome
+
+The refined flow paired ID-verified registration with values-based filtering and kept performance tight — Lighthouse scores were optimized for speed alongside the added verification steps, so trust-building never came at the cost of a fast, responsive app.`,
+      },
+    ],
+  },
+];

@@ -36,14 +36,6 @@ export function MainNav() {
             asChild
             className={`${navigationMenuTriggerStyle()} font-medium`}
           >
-            <Link href="/posts/blog">Blog</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            asChild
-            className={`${navigationMenuTriggerStyle()} font-medium`}
-          >
             <Link href="/info">About</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>

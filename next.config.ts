@@ -2,24 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Only enable static export for production builds
-  ...(process.env.NODE_ENV === 'production' && { 
+  ...(process.env.NODE_ENV === 'production' && {
     output: "export",
     trailingSlash: true,
     skipTrailingSlashRedirect: true,
   }),
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "**",
-      },
-      {
-        protocol: "https",
-        hostname: "supers-isuryanarayanan-prod.s3.ap-south-1.amazonaws.com",
-        pathname: "**",
-      },
-    ],
+    // All project images are local (public/projects/**) — no remote sources needed.
     unoptimized: true,
   },
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",

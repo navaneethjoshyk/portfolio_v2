@@ -14,10 +14,10 @@ interface MatrixShaderBackgroundProps {
 
 export default function MatrixShaderBackground({
   className = "",
-  name = "Surya Narayanan",
-  title = "Senior Software Engineer",
-  skills = "Golang • Python • TypeScript",
-  interests = "DevOps • Design • Architecture",
+  name = "Navaneeth Joshy K",
+  title = "Front-End Developer",
+  skills = "Figma • React • Tailwind CSS",
+  interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {
   return (
     <div
