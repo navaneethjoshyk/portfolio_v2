@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 interface MatrixShaderBackgroundProps {
-  className?: string;
   name?: string;
   title?: string;
   skills?: string;
@@ -13,15 +13,24 @@ interface MatrixShaderBackgroundProps {
 }
 
 export default function MatrixShaderBackground({
-  className = "",
   name = "Navaneeth Joshy K",
   title = "Front-End Developer",
   skills = "Figma • React • Tailwind CSS",
   interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  // Rendered once in the root layout and kept mounted for the whole
+  // session — only toggled with CSS (display) rather than being
+  // mounted/unmounted per route. Unmounting and recreating the WebGL
+  // canvas on every navigation to "/" was what caused the animation to
+  // "freeze" (a stale/leaked WebGL context) when navigating back home.
+  const visibilityClass = isHome ? "dark:block hidden" : "hidden";
+
   return (
     <div
-      className={className}
+      className={visibilityClass}
       style={{
         position: "fixed",
         top: 0,
@@ -29,7 +38,7 @@ export default function MatrixShaderBackground({
         width: "100vw",
         height: "100vh",
         zIndex: 0,
-        pointerEvents: "none",
+        pointerEvents: isHome ? "auto" : "none",
       }}
     >
       <Canvas

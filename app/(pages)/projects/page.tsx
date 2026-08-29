@@ -1,6 +1,7 @@
 import { posts } from "@/data/posts";
 import { PostsApi } from "@/lib/posts-api";
 import { PostCard } from "@/components/post/post-card";
+import { ProjectsImageShowcase } from "@/components/projects/image-showcase";
 
 // Process static posts to handle encoding issues
 const processedPosts = PostsApi.processStaticPosts(posts);
@@ -13,9 +14,12 @@ export default function ProjectsPage() {
   return (
     <div className="flex flex-col gap-12 md:gap-16">
       <section>
-        <h1 className="text-4xl font-bold tracking-tight mb-12 md:mb-16">
+        <h1 className="text-4xl font-bold tracking-tight mb-8 md:mb-10">
           Projects
         </h1>
+        <ProjectsImageShowcase />
+      </section>
+      <section>
         <div className="grid gap-8 md:gap-10">
           {publishedPosts.map((post) => (
             <PostCard key={post.id} post={post} />

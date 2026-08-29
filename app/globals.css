@@ -40,6 +40,23 @@
   opacity: 0;
 }
 
+@keyframes loopScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-loop-scroll {
+  animation: loopScroll 40s linear infinite;
+}
+
+.group:hover .group-hover\:paused {
+  animation-play-state: paused;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

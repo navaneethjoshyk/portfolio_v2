@@ -6,6 +6,7 @@ import "./code-styles.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import MatrixShaderBackground from "@/components/ui/matrix-shader-background";
 import { Toaster } from "sonner";
 
 const lato = Lato({
@@ -54,6 +55,15 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+        {/* Mounted once here (not per-page) so the WebGL canvas never gets
+           torn down and recreated on client-side navigation — it just
+           shows/hides itself with CSS depending on the current route. */}
+        <MatrixShaderBackground
+          name="Navaneeth Joshy K"
+          title="Front-End Developer at B12Feed"
+          skills="Figma • React • Tailwind CSS"
+          interests="UI/UX Design • Accessibility • Web Development"
+        />
         <ThemeProvider>
           <div className="relative min-h-screen flex flex-col z-10">
             <Header />
