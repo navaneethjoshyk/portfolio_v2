@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
+import { AUTHOR_NAME } from "@/lib/site-config";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -32,14 +33,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedId = validateAndParseId(id);
   const post = getPost(resolvedId);
 
-  if (!post) {
+  if (!post || post.status !== "published") {
     return {
       title: "Post Not Found",
+      robots: { index: false, follow: false },
     };
   }
 
+  // Project pages = specific expertise: lead with what this case study is
+  // actually about (the excerpt), not just the project name.
+  const description =
+    post.excerpt || `A UX/UI case study by ${AUTHOR_NAME}: ${post.title}.`;
+  const canonicalPath = `/post/${post.id}`;
+  const ogImage = post.heroImages?.[0] ?? post.thumbnail;
+
   return {
     title: post.title,
+    description,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      type: "article",
+      url: canonicalPath,
+      title: post.title,
+      description,
+      ...(ogImage && { images: [{ url: ogImage.url, alt: ogImage.alt }] }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      ...(ogImage && { images: [ogImage.url] }),
+    },
   };
 }
 

@@ -1,5 +1,29 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Metadata } from "next";
+import { AUTHOR_NAME } from "@/lib/site-config";
+
+const TITLE = "About";
+const DESCRIPTION = `About ${AUTHOR_NAME}, a UX/UI Designer and Front-End Developer based in Canada with over two years of experience across telecom, healthcare, and community-platform products.`;
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: {
+    canonical: "/info",
+  },
+  openGraph: {
+    type: "profile",
+    url: "/info",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+};
 
 export default function AboutPage() {
   return (
