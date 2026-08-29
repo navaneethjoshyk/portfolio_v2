@@ -1,0 +1,6 @@
+# This site is a fully static export (see next.config.ts — output: "export"
+# for production builds). No SSR, API routes, or Netlify Functions are used.
+
+[build]
+  command = "pnpm run build"
+  publish = "out"
