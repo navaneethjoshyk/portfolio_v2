@@ -3,13 +3,8 @@
  * copy. Everything that needs an absolute URL (metadataBase, sitemap.ts,
  * robots.ts, per-page canonical/OG tags) reads from here, so switching
  * domains later is a one-line change instead of a find-and-replace.
- *
- * IMPORTANT: update SITE_URL to the site's real, final production domain
- * (whatever you set as the primary domain in Netlify) before relying on
- * the sitemap/canonical URLs/Open Graph tags — right now it's a
- * placeholder.
  */
-export const SITE_URL = "https://navaneethjoshyk.com";
+export const SITE_URL = "https://navaneethjoshyk.netlify.app";
 
 export const SITE_NAME = "Navaneeth Joshy K — Portfolio";
 
