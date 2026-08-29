@@ -22,15 +22,17 @@ export default function MatrixShaderBackground({
   const isHome = pathname === "/";
 
   // Rendered once in the root layout and kept mounted for the whole
-  // session — only toggled with CSS (display) rather than being
-  // mounted/unmounted per route. Unmounting and recreating the WebGL
-  // canvas on every navigation to "/" was what caused the animation to
-  // "freeze" (a stale/leaked WebGL context) when navigating back home.
-  const visibilityClass = isHome ? "dark:block hidden" : "hidden";
-
+  // session, instead of per-page — remounting a fresh <Canvas> (and thus a
+  // fresh WebGL context) every time you navigated back to "/" was what
+  // caused the animation to "freeze". Visibility is toggled with
+  // `visibility` (not `display`), because `display: none` collapses the
+  // canvas to 0×0 while hidden; when it's shown again the renderer can be
+  // left stuck with a stale/zero size instead of resuming cleanly.
+  // `visibility: hidden` keeps its layout box (and WebGL render loop) at a
+  // constant, real size the entire time, so it just keeps animating
+  // underneath and is instantly correct when it reappears.
   return (
     <div
-      className={visibilityClass}
       style={{
         position: "fixed",
         top: 0,
@@ -38,6 +40,7 @@ export default function MatrixShaderBackground({
         width: "100vw",
         height: "100vh",
         zIndex: 0,
+        visibility: isHome ? "visible" : "hidden",
         pointerEvents: isHome ? "auto" : "none",
       }}
     >

@@ -15,6 +15,10 @@ export const posts: Post[] = [
       url: "/projects/care-calendar/cover.svg",
       alt: "Care Calendar cover",
     },
+    heroImages: [
+      { url: "/projects/care-calendar/high-fi-1.png", alt: "Care Calendar high-fidelity screen" },
+      { url: "/projects/care-calendar/high-fi-2.png", alt: "Care Calendar high-fidelity screen" },
+    ],
     excerpt:
       "A unified healthcare booking platform designed to cut through the navigation complexity and slow performance that plague newcomer-facing scheduling systems.",
     createdAt: "2026-01-15T00:00:00.000Z",
@@ -135,6 +139,12 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
       url: "/projects/infinite-housing/cover.png",
       alt: "Infinite Housing cover",
     },
+    heroImages: [
+      { url: "/projects/infinite-housing/dashboard.png", alt: "Infinite Housing dashboard screen" },
+      { url: "/projects/infinite-housing/onboarding.png", alt: "Infinite Housing onboarding screen" },
+      { url: "/projects/infinite-housing/modules.png", alt: "Infinite Housing modules screen" },
+      { url: "/projects/infinite-housing/form.png", alt: "Infinite Housing form screen" },
+    ],
     excerpt:
       "A capstone platform that turns sustainable-construction certification into a guided, mobile-first journey for manufacturers, contractors, and first-time builders.",
     createdAt: "2026-01-10T00:00:00.000Z",
@@ -261,6 +271,10 @@ In testing, the onboarding flow read as clear and approachable for a completely 
       url: "/projects/med-connect/cover.png",
       alt: "Med Connect cover",
     },
+    heroImages: [
+      { url: "/projects/med-connect/high-fi-1.jpg", alt: "Med Connect high-fidelity screen" },
+      { url: "/projects/med-connect/high-fi-2.png", alt: "Med Connect high-fidelity screen" },
+    ],
     excerpt:
       "A B2B healthcare platform that unifies scattered patient records and referrals into one secure, real-time view for specialists.",
     createdAt: "2025-09-05T00:00:00.000Z",
@@ -357,6 +371,10 @@ The redesigned handover flow and clarified CTA turned a scattered set of referra
       url: "/projects/ocean-palette/cover.png",
       alt: "Ocean Palette cover",
     },
+    heroImages: [
+      { url: "/projects/ocean-palette/high-fi-1.jpg", alt: "Ocean Palette high-fidelity screen" },
+      { url: "/projects/ocean-palette/high-fi-2.jpg", alt: "Ocean Palette high-fidelity screen" },
+    ],
     excerpt:
       "\"The Art of the Plate\" — a high-aesthetic reservation experience for a fine-dining brand, designed to feel as curated as the menu itself.",
     createdAt: "2026-02-01T00:00:00.000Z",
@@ -441,6 +459,10 @@ The objective: create a platform where every interaction feels sophisticated, cl
       url: "/projects/cred/cover.svg",
       alt: "Cred app UI cover",
     },
+    heroImages: [
+      { url: "/projects/cred/cover.svg", alt: "Cred app UI screen" },
+      { url: "/projects/cred/screen.png", alt: "Cred app UI screen" },
+    ],
     excerpt:
       "A UI/UX exploration of CRED's fintech experience — building a \"Fort Knox\" aesthetic that makes bill payments feel like a reward instead of a chore.",
     createdAt: "2026-06-01T00:00:00.000Z",
@@ -503,6 +525,11 @@ The exploration worked through several interface iterations focused on a copper-
       url: "/projects/we-united/screen-1.svg",
       alt: "WeUnited app UI cover",
     },
+    heroImages: [
+      { url: "/projects/we-united/screen-1.svg", alt: "WeUnited app UI screen" },
+      { url: "/projects/we-united/screen-2.svg", alt: "WeUnited app UI screen" },
+      { url: "/projects/we-united/screen-3.svg", alt: "WeUnited app UI screen" },
+    ],
     excerpt:
       "A trust-first matrimony app UI that bridges traditional cultural values with a high-security, values-based matchmaking experience.",
     createdAt: "2026-05-01T00:00:00.000Z",

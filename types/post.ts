@@ -5,6 +5,9 @@ export interface Post {
   slug?: string;
   cells: Cell[];
   thumbnail?: ImageContent;
+  /** High-fidelity screenshots used as the project card's scrolling hero
+   * image. Falls back to `thumbnail` when absent or empty. */
+  heroImages?: ImageContent[];
   status: "published" | "draft";
   featured: boolean;
   type: PostType;

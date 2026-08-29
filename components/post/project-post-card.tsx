@@ -3,6 +3,7 @@
 import { Post } from "@/types/post";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { ThumbnailCell } from "./thumbnail-cell";
+import { ProjectHeroScroll } from "./project-hero-scroll";
 import { formatDistance } from "date-fns";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -191,13 +192,22 @@ export function ProjectPostCard({
             </div>
           )}
 
-          {post.thumbnail && (
+          {post.heroImages && post.heroImages.length > 0 ? (
             <div className="flex-shrink-0">
-              <ThumbnailCell
-                content={post.thumbnail}
+              <ProjectHeroScroll
+                images={post.heroImages}
                 className={isCompact ? "h-48" : "h-64 md:h-72"}
               />
             </div>
+          ) : (
+            post.thumbnail && (
+              <div className="flex-shrink-0">
+                <ThumbnailCell
+                  content={post.thumbnail}
+                  className={isCompact ? "h-48" : "h-64 md:h-72"}
+                />
+              </div>
+            )
           )}
         </CardContent>
       </Link>
