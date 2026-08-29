@@ -13,8 +13,17 @@ interface ProjectHeroScrollProps {
  * A project card's "hero" image slot. When a project has more than one
  * high-fidelity screenshot (`heroImages`), they auto-scroll horizontally in
  * a seamless, looping strip so a visitor sees several screens without
- * opening the project. With a single image it just renders statically
- * (nothing to scroll), matching the old thumbnail behaviour.
+ * opening the project. With a single image it just renders statically,
+ * matching the old thumbnail behaviour.
+ *
+ * The scrolling strip is `absolute`, not part of normal flow. A strip wide
+ * enough to hold several duplicated screenshots can otherwise inflate the
+ * width of its flex/grid ancestors (the card, the page grid, eventually the
+ * whole page) even with `overflow-hidden` on its parent, because that
+ * intrinsic width still gets counted while computing sizes further up the
+ * tree. Taking the strip out of flow with `absolute` removes it from that
+ * calculation entirely, so the box here is guaranteed to stay exactly the
+ * size `className` gives it (the same size the static thumbnail used).
  */
 export function ProjectHeroScroll({ images, className }: ProjectHeroScrollProps) {
   if (images.length === 0) return null;
@@ -49,11 +58,11 @@ export function ProjectHeroScroll({ images, className }: ProjectHeroScrollProps)
         className
       )}
     >
-      <div className="flex h-full w-max animate-loop-scroll group-hover:paused">
+      <div className="absolute inset-y-0 left-0 flex h-full animate-loop-scroll group-hover:paused">
         {loopImages.map((image, index) => (
           <div
             key={`${image.url}-${index}`}
-            className="relative h-full aspect-[4/3] flex-shrink-0 px-2"
+            className="relative h-full aspect-[4/3] shrink-0 px-2"
           >
             <Image
               src={image.url}

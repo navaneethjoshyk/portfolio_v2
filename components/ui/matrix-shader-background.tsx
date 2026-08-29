@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import { usePathname } from "next/navigation";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 interface MatrixShaderBackgroundProps {
+  className?: string;
   name?: string;
   title?: string;
   skills?: string;
@@ -13,26 +13,15 @@ interface MatrixShaderBackgroundProps {
 }
 
 export default function MatrixShaderBackground({
+  className = "",
   name = "Navaneeth Joshy K",
   title = "Front-End Developer",
   skills = "Figma • React • Tailwind CSS",
   interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-
-  // Rendered once in the root layout and kept mounted for the whole
-  // session, instead of per-page — remounting a fresh <Canvas> (and thus a
-  // fresh WebGL context) every time you navigated back to "/" was what
-  // caused the animation to "freeze". Visibility is toggled with
-  // `visibility` (not `display`), because `display: none` collapses the
-  // canvas to 0×0 while hidden; when it's shown again the renderer can be
-  // left stuck with a stale/zero size instead of resuming cleanly.
-  // `visibility: hidden` keeps its layout box (and WebGL render loop) at a
-  // constant, real size the entire time, so it just keeps animating
-  // underneath and is instantly correct when it reappears.
   return (
     <div
+      className={className}
       style={{
         position: "fixed",
         top: 0,
@@ -40,8 +29,7 @@ export default function MatrixShaderBackground({
         width: "100vw",
         height: "100vh",
         zIndex: 0,
-        visibility: isHome ? "visible" : "hidden",
-        pointerEvents: isHome ? "auto" : "none",
+        pointerEvents: "none",
       }}
     >
       <Canvas
