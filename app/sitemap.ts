@@ -4,7 +4,11 @@ import { PostsApi } from "@/lib/posts-api";
 import { SITE_URL } from "@/lib/site-config";
 
 // Static export (next.config.ts: output "export") still generates a static
-// sitemap.xml from this file at build time — no server needed.
+// sitemap.xml from this file at build time — no server needed. Next
+// requires routes under output: "export" to be explicitly marked static
+// (it otherwise assumes metadata routes might be dynamic).
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const processedPosts = PostsApi.processStaticPosts(posts);
   const publishedProjects = processedPosts.filter(
