@@ -5,7 +5,7 @@ import { PostCell } from "@/components/post/post-cell";
 import { formatDistance } from "date-fns";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Metadata } from "next";
 import { AUTHOR_NAME } from "@/lib/site-config";
 
@@ -137,6 +137,19 @@ export default async function PostPage({ params }: Props) {
           <PostCell key={cell.id} cell={cell} />
         ))}
       </div>
+
+      {post.figmaLinks && post.figmaLinks.length > 0 && (
+        <div className="mt-16 pt-8 border-t flex flex-wrap gap-3">
+          {post.figmaLinks.map((link) => (
+            <Button key={link.url} variant="outline" asChild>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {link.label}
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          ))}
+        </div>
+      )}
     </article>
   );
 }

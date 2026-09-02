@@ -8,6 +8,9 @@ export interface Post {
   /** High-fidelity screenshots used as the project card's scrolling hero
    * image. Falls back to `thumbnail` when absent or empty. */
   heroImages?: ImageContent[];
+  /** Links to the project's Figma file(s) — prototype, design system,
+   * FigJam board, etc. Rendered as buttons at the end of the case study. */
+  figmaLinks?: { label: string; url: string }[];
   status: "published" | "draft";
   featured: boolean;
   type: PostType;

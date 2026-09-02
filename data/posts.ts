@@ -145,6 +145,16 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
       { url: "/projects/infinite-housing/modules.png", alt: "Infinite Housing modules screen" },
       { url: "/projects/infinite-housing/form.png", alt: "Infinite Housing form screen" },
     ],
+    figmaLinks: [
+      {
+        label: "Open Figma Prototype",
+        url: "https://www.figma.com/design/UrnepX8fTurfw4qKFE7aoS/Infinite-housing-Fidelity-?node-id=159-5690",
+      },
+      {
+        label: "View FigJam Board",
+        url: "https://www.figma.com/board/U7b80mbWq99kfrfw3Cxen3/Infinite-Homes---Capstone-Project?node-id=0-1",
+      },
+    ],
     excerpt:
       "A capstone platform that turns sustainable-construction certification into a guided, mobile-first journey for manufacturers, contractors, and first-time builders.",
     createdAt: "2026-01-10T00:00:00.000Z",
@@ -274,6 +284,12 @@ In testing, the onboarding flow read as clear and approachable for a completely 
     heroImages: [
       { url: "/projects/med-connect/high-fi-1.jpg", alt: "Med Connect high-fidelity screen" },
       { url: "/projects/med-connect/high-fi-2.png", alt: "Med Connect high-fidelity screen" },
+    ],
+    figmaLinks: [
+      {
+        label: "View Figma Case Study",
+        url: "https://www.figma.com/design/0VtyHDyTOltnMRCJTssPnj/Medical?node-id=580-577&t=BjylY3zLe8RCh8p0-1",
+      },
     ],
     excerpt:
       "A B2B healthcare platform that unifies scattered patient records and referrals into one secure, real-time view for specialists.",
@@ -462,6 +478,12 @@ The objective: create a platform where every interaction feels sophisticated, cl
     heroImages: [
       { url: "/projects/cred/cover.svg", alt: "Cred app UI screen" },
       { url: "/projects/cred/screen.png", alt: "Cred app UI screen" },
+    ],
+    figmaLinks: [
+      {
+        label: "Explore Prototype",
+        url: "https://www.figma.com/design/feH6rXNjjmcBC4XyHDWuVK/cred-UPI?node-id=0-1&t=VrOjZF2o55LGPnQb-1",
+      },
     ],
     excerpt:
       "A UI/UX exploration of CRED's fintech experience — building a \"Fort Knox\" aesthetic that makes bill payments feel like a reward instead of a chore.",
