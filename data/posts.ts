@@ -143,7 +143,7 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
       { url: "/projects/infinite-housing/dashboard.png", alt: "Infinite Housing dashboard screen" },
       { url: "/projects/infinite-housing/onboarding.png", alt: "Infinite Housing onboarding screen" },
       { url: "/projects/infinite-housing/modules.png", alt: "Infinite Housing modules screen" },
-      { url: "/projects/infinite-housing/form.png", alt: "Infinite Housing form screen" },
+      { url: "/projects/infinite-housing/material-picker.png", alt: "Infinite Housing material selection screen" },
     ],
     figmaLinks: [
       {
