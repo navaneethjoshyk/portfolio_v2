@@ -172,7 +172,7 @@ export function ProjectPostCard({
             isCompact ? "h-40" : "h-56 md:h-64"
           )}
         >
-          <CardTitle className="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+          <CardTitle className="font-playfair text-3xl md:text-5xl font-bold tracking-tight leading-tight">
             {post.title}
           </CardTitle>
         </div>

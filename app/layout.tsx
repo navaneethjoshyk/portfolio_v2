@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Roboto_Mono } from "next/font/google";
+import { Lato, Roboto_Mono, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import "./code-styles.css";
@@ -20,6 +20,14 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
+// Used for the big project-name banner on project cards only.
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
   display: "swap",
 });
 
@@ -59,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${lato.variable} ${robotoMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${lato.variable} ${robotoMono.variable} ${playfairDisplay.variable} min-h-screen bg-background font-sans antialiased`}
       >
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
