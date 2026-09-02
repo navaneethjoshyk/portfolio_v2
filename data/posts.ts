@@ -11,6 +11,7 @@ export const posts: Post[] = [
     status: "published",
     featured: false,
     type: "project",
+    category: "Healthcare",
     thumbnail: {
       url: "/projects/care-calendar/cover.svg",
       alt: "Care Calendar cover",
@@ -135,6 +136,7 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
     status: "published",
     featured: true,
     type: "project",
+    category: "Sustainable Construction",
     thumbnail: {
       url: "/projects/infinite-housing/cover.png",
       alt: "Infinite Housing cover",
@@ -277,6 +279,7 @@ In testing, the onboarding flow read as clear and approachable for a completely 
     status: "published",
     featured: true,
     type: "project",
+    category: "Healthcare",
     thumbnail: {
       url: "/projects/med-connect/cover.png",
       alt: "Med Connect cover",
@@ -383,6 +386,7 @@ The redesigned handover flow and clarified CTA turned a scattered set of referra
     status: "published",
     featured: false,
     type: "project",
+    category: "Hospitality",
     thumbnail: {
       url: "/projects/ocean-palette/cover.png",
       alt: "Ocean Palette cover",
@@ -471,6 +475,7 @@ The objective: create a platform where every interaction feels sophisticated, cl
     status: "published",
     featured: false,
     type: "project",
+    category: "Fintech",
     thumbnail: {
       url: "/projects/cred/cover.svg",
       alt: "Cred app UI cover",
@@ -543,6 +548,7 @@ The exploration worked through several interface iterations focused on a copper-
     status: "published",
     featured: false,
     type: "project",
+    category: "Matrimony",
     thumbnail: {
       url: "/projects/we-united/screen-1.svg",
       alt: "WeUnited app UI cover",

@@ -2,13 +2,13 @@
 
 import { Post } from "@/types/post";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { ThumbnailCell } from "./thumbnail-cell";
-import { ProjectHeroScroll } from "./project-hero-scroll";
+import { CategoryBadge, getCategoryStyle } from "./category-badge";
 import { formatDistance } from "date-fns";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useRef, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 interface ProjectPostCardProps {
   post: Post;
@@ -158,15 +158,22 @@ export function ProjectPostCard({
     };
   }, [post.id]);
 
+  const borderClass = getCategoryStyle(post.category).borderClass;
+
   return (
     <Card
       ref={cardRef}
-      className="w-full transition-all duration-500 hover:shadow-md dark:hover:shadow-primary/5 hover:scale-[1.005] transform-gpu"
+      className={cn(
+        "w-full transition-all duration-500 hover:shadow-md dark:hover:shadow-primary/5 hover:scale-[1.005] transform-gpu",
+        post.category && "border-l-4",
+        borderClass
+      )}
     >
       <Link href={`/post/${post.id}`} className="block">
         <CardContent className="px-4 py-3 md:px-5 md:py-4 flex flex-col">
           <div className="flex items-start justify-between gap-3 mb-2">
-            <div className="space-y-1 flex-1">
+            <div className="space-y-2 flex-1">
+              <CategoryBadge category={post.category} />
               <CardTitle className="transition-colors hover:text-primary text-xl font-bold leading-tight">
                 {post.title}
               </CardTitle>
@@ -185,29 +192,9 @@ export function ProjectPostCard({
           </div>
 
           {!isCompact && previewContent && (
-            <div className="mb-3">
-              <p className="text-muted-foreground line-clamp-3 leading-relaxed">
-                {previewContent}
-              </p>
-            </div>
-          )}
-
-          {post.heroImages && post.heroImages.length > 0 ? (
-            <div className="flex-shrink-0">
-              <ProjectHeroScroll
-                images={post.heroImages}
-                className={isCompact ? "h-48" : "h-64 md:h-72"}
-              />
-            </div>
-          ) : (
-            post.thumbnail && (
-              <div className="flex-shrink-0">
-                <ThumbnailCell
-                  content={post.thumbnail}
-                  className={isCompact ? "h-48" : "h-64 md:h-72"}
-                />
-              </div>
-            )
+            <p className="text-muted-foreground line-clamp-3 leading-relaxed">
+              {previewContent}
+            </p>
           )}
         </CardContent>
       </Link>

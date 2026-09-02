@@ -11,6 +11,10 @@ export interface Post {
   /** Links to the project's Figma file(s) — prototype, design system,
    * FigJam board, etc. Rendered as buttons at the end of the case study. */
   figmaLinks?: { label: string; url: string }[];
+  /** Industry/category label shown as an icon + badge on the project
+   * card (e.g. "Healthcare", "Fintech"). See components/post/category-badge.tsx
+   * for the icon/color lookup — unmapped labels fall back to a generic style. */
+  category?: string;
   status: "published" | "draft";
   featured: boolean;
   type: PostType;
