@@ -2,7 +2,7 @@
 
 import { Post } from "@/types/post";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { CategoryBadge, getCategoryStyle } from "./category-badge";
+import { CategoryBadge } from "./category-badge";
 import { formatDistance } from "date-fns";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -158,25 +158,29 @@ export function ProjectPostCard({
     };
   }, [post.id]);
 
-  const borderClass = getCategoryStyle(post.category).borderClass;
-
   return (
     <Card
       ref={cardRef}
-      className={cn(
-        "w-full transition-all duration-500 hover:shadow-md dark:hover:shadow-primary/5 hover:scale-[1.005] transform-gpu",
-        post.category && "border-l-4",
-        borderClass
-      )}
+      className="w-full overflow-hidden transition-all duration-500 hover:shadow-md dark:hover:shadow-primary/5 hover:scale-[1.005] transform-gpu"
     >
       <Link href={`/post/${post.id}`} className="block">
+        {/* Big typographic "cover" — the project's own name standing in
+           for a screenshot, instead of a (blurry, easily-outdated) image. */}
+        <div
+          className={cn(
+            "flex items-center justify-center bg-muted/60 dark:bg-muted/20 px-6 text-center",
+            isCompact ? "h-40" : "h-56 md:h-64"
+          )}
+        >
+          <CardTitle className="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+            {post.title}
+          </CardTitle>
+        </div>
+
         <CardContent className="px-4 py-3 md:px-5 md:py-4 flex flex-col">
           <div className="flex items-start justify-between gap-3 mb-2">
             <div className="space-y-2 flex-1">
               <CategoryBadge category={post.category} />
-              <CardTitle className="transition-colors hover:text-primary text-xl font-bold leading-tight">
-                {post.title}
-              </CardTitle>
               <p className="text-sm text-muted-foreground font-medium">
                 {formattedDate}
               </p>
