@@ -5,6 +5,223 @@ import { Post } from "@/types/post";
 
 export const posts: Post[] = [
   {
+    id: "b12feed",
+    title: "B12Feed Account Access",
+    slug: "b12feed",
+    status: "published",
+    featured: true,
+    type: "project",
+    category: "Food Rescue",
+    thumbnail: {
+      url: "/projects/b12feed/dashboard.png",
+      alt: "B12Feed admin dashboard",
+    },
+    heroImages: [
+      { url: "/projects/b12feed/dashboard.png", alt: "B12Feed admin dashboard" },
+      { url: "/projects/b12feed/sign-in-default.png", alt: "B12Feed sign-in screen" },
+    ],
+    excerpt:
+      "B12Feed connects surplus food from local businesses with community organizations that redistribute it. I designed and helped build the platform's admin experience — from signing in and recovering an account, to the security and notification settings that keep it trustworthy day to day.",
+    createdAt: "2026-01-05T00:00:00.000Z",
+    updatedAt: "2026-08-20T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "b12feed-1",
+        type: "markdown",
+        order: 1,
+        content: `B12Feed's admin console is used by a small internal team to manage two things that matter a lot to the people relying on the platform: which partner organizations are trusted to receive food, and which food listings are active, flagged, or need attention. Because the console holds account credentials, contact details for real charities, and food-safety-relevant status data, the login and account layer couldn't be an afterthought — it needed to feel as considered as the dashboard itself.
+
+This was a three-person build. I owned the UI/UX design end to end and built the client side in React and Tailwind CSS, working closely with the other two team members on backend logic and admin-side functionality.
+
+**Role:** UI/UX Design + Frontend
+**Team:** 3-person build
+**Status:** Live product
+**Stack:** React, Tailwind CSS`,
+      },
+      {
+        id: "b12feed-2",
+        type: "markdown",
+        order: 2,
+        content: `## What I Designed & Built
+
+- **Sign-in & recovery flow** — Login with inline validation, a "forgot password" request step, an email-sent confirmation with a resend cooldown, and a guided password-reset screen.
+- **Account & security settings** — A settings area split into Account, Security, and Notifications — where admins update their profile, change their password, and control what they're alerted about.
+- **Admin workflows** — Organization approvals, a pending-requests queue, and food-listing moderation (flag, resolve, remove) — the day-to-day tools built on top of that trusted account layer.
+- **Frontend implementation** — Built the full client side in React and Tailwind CSS, and contributed to admin-side logic alongside the other two team members.`,
+      },
+      {
+        id: "b12feed-3",
+        type: "markdown",
+        order: 3,
+        content: `## Designing the Auth Layer
+
+The sign-in and recovery flow gets the same state coverage as the rest of the product: a default state, inline field-level validation on login, a distinct "check your email" confirmation after a reset request (with a resend cooldown so admins aren't tempted to spam the request), and clear success and error states when setting a new password.
+
+**States covered:** Default, Validation error, Recovery sent, Success`,
+      },
+      {
+        id: "b12feed-4",
+        type: "image",
+        order: 4,
+        content: {
+          url: "/projects/b12feed/sign-in-default.png",
+          alt: "B12Feed sign-in screen, default state",
+        },
+      },
+      {
+        id: "b12feed-5",
+        type: "image",
+        order: 5,
+        content: {
+          url: "/projects/b12feed/sign-in-error.png",
+          alt: "B12Feed sign-in screen showing invalid email and incorrect password validation",
+        },
+      },
+      {
+        id: "b12feed-6",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/b12feed/forgot-password.png",
+          alt: "B12Feed forgot password request screen",
+        },
+      },
+      {
+        id: "b12feed-7",
+        type: "image",
+        order: 7,
+        content: {
+          url: "/projects/b12feed/check-your-email.png",
+          alt: "B12Feed check your email confirmation with resend cooldown",
+        },
+      },
+      {
+        id: "b12feed-8",
+        type: "markdown",
+        order: 8,
+        content: `*Detail worth noting: the reset-sent screen swaps its own "Resend link" button for a disabled state with a live countdown rather than just hiding it — so admins always know a resend is coming rather than wondering if the action was lost.*`,
+      },
+      {
+        id: "b12feed-9",
+        type: "image",
+        order: 9,
+        content: {
+          url: "/projects/b12feed/reset-password-default.png",
+          alt: "B12Feed create a new password screen, default state",
+        },
+      },
+      {
+        id: "b12feed-10",
+        type: "image",
+        order: 10,
+        content: {
+          url: "/projects/b12feed/reset-password-error.png",
+          alt: "B12Feed create a new password screen showing validation errors",
+        },
+      },
+      {
+        id: "b12feed-11",
+        type: "markdown",
+        order: 11,
+        content: `## Account & Security Settings
+
+Once signed in, an admin's Settings page is split into three tabs — Account, Security, and Notifications — so identity details, credentials, and alert preferences aren't competing for space on one long form. Security holds password changes; Notifications lets an admin choose what actually needs their attention (new organization requests, flagged listings, failed pickups, system updates) instead of getting everything by default.`,
+      },
+      {
+        id: "b12feed-12",
+        type: "image",
+        order: 12,
+        content: {
+          url: "/projects/b12feed/settings-account.png",
+          alt: "B12Feed settings, Account tab with profile and contact details",
+        },
+      },
+      {
+        id: "b12feed-13",
+        type: "image",
+        order: 13,
+        content: {
+          url: "/projects/b12feed/settings-security.png",
+          alt: "B12Feed settings, Security tab with password change fields",
+        },
+      },
+      {
+        id: "b12feed-14",
+        type: "image",
+        order: 14,
+        content: {
+          url: "/projects/b12feed/settings-notifications.png",
+          alt: "B12Feed settings, Notifications tab with selectable alert preferences",
+        },
+      },
+      {
+        id: "b12feed-15",
+        type: "image",
+        order: 15,
+        content: {
+          url: "/projects/b12feed/password-updated.png",
+          alt: "B12Feed password updated confirmation screen",
+        },
+      },
+      {
+        id: "b12feed-16",
+        type: "markdown",
+        order: 16,
+        content: `## What That Account Layer Supports
+
+Once an admin is signed in, the console is where B12Feed's actual operation happens: reviewing organizations that want to join the platform, approving or rejecting them, and keeping the food-listings feed clean by flagging, resolving, or removing entries that need attention.`,
+      },
+      {
+        id: "b12feed-17",
+        type: "image",
+        order: 17,
+        content: {
+          url: "/projects/b12feed/dashboard.png",
+          alt: "B12Feed admin dashboard with platform overview stats and pending requests",
+        },
+      },
+      {
+        id: "b12feed-18",
+        type: "image",
+        order: 18,
+        content: {
+          url: "/projects/b12feed/organizations.png",
+          alt: "B12Feed organizations list with approval and status actions",
+        },
+      },
+      {
+        id: "b12feed-19",
+        type: "image",
+        order: 19,
+        content: {
+          url: "/projects/b12feed/food-listings.png",
+          alt: "B12Feed food listings with status and moderation actions",
+        },
+      },
+      {
+        id: "b12feed-20",
+        type: "markdown",
+        order: 20,
+        content: `## Team & My Role
+
+- **Design** — Owned end to end by me: flows, states, and the visual system across the admin console.
+- **Frontend** — Client side built by me in React and Tailwind CSS.
+- **Backend & admin logic** — Built with the other two members of the team, with my input on admin-side functionality.
+
+## Where It Stands
+
+B12Feed is live and in active use.
+
+- **195** food items routed to partner organizations
+- **20** partner organizations onboarded
+- **~45%** organization growth this year
+
+*Note on these numbers: these are current platform figures as of this write-up, not a claim about what the login/account redesign specifically caused — they're here to show the product is real and operating, not a concept.*`,
+      },
+    ],
+  },
+  {
     id: "care-calendar",
     title: "Care Calendar",
     slug: "care-calendar",
@@ -624,223 +841,6 @@ High-fidelity refinement focused on making verification feel reassuring rather t
         content: `## Outcome
 
 The refined flow paired ID-verified registration with values-based filtering and kept performance tight — Lighthouse scores were optimized for speed alongside the added verification steps, so trust-building never came at the cost of a fast, responsive app.`,
-      },
-    ],
-  },
-  {
-    id: "b12feed",
-    title: "B12Feed Account Access",
-    slug: "b12feed",
-    status: "published",
-    featured: true,
-    type: "project",
-    category: "Food Rescue",
-    thumbnail: {
-      url: "/projects/b12feed/dashboard.png",
-      alt: "B12Feed admin dashboard",
-    },
-    heroImages: [
-      { url: "/projects/b12feed/dashboard.png", alt: "B12Feed admin dashboard" },
-      { url: "/projects/b12feed/sign-in-default.png", alt: "B12Feed sign-in screen" },
-    ],
-    excerpt:
-      "B12Feed connects surplus food from local businesses with community organizations that redistribute it. I designed and helped build the platform's admin experience — from signing in and recovering an account, to the security and notification settings that keep it trustworthy day to day.",
-    createdAt: "2026-01-05T00:00:00.000Z",
-    updatedAt: "2026-08-20T00:00:00.000Z",
-    viewCount: 0,
-    cells: [
-      {
-        id: "b12feed-1",
-        type: "markdown",
-        order: 1,
-        content: `B12Feed's admin console is used by a small internal team to manage two things that matter a lot to the people relying on the platform: which partner organizations are trusted to receive food, and which food listings are active, flagged, or need attention. Because the console holds account credentials, contact details for real charities, and food-safety-relevant status data, the login and account layer couldn't be an afterthought — it needed to feel as considered as the dashboard itself.
-
-This was a three-person build. I owned the UI/UX design end to end and built the client side in React and Tailwind CSS, working closely with the other two team members on backend logic and admin-side functionality.
-
-**Role:** UI/UX Design + Frontend
-**Team:** 3-person build
-**Status:** Live product
-**Stack:** React, Tailwind CSS`,
-      },
-      {
-        id: "b12feed-2",
-        type: "markdown",
-        order: 2,
-        content: `## What I Designed & Built
-
-- **Sign-in & recovery flow** — Login with inline validation, a "forgot password" request step, an email-sent confirmation with a resend cooldown, and a guided password-reset screen.
-- **Account & security settings** — A settings area split into Account, Security, and Notifications — where admins update their profile, change their password, and control what they're alerted about.
-- **Admin workflows** — Organization approvals, a pending-requests queue, and food-listing moderation (flag, resolve, remove) — the day-to-day tools built on top of that trusted account layer.
-- **Frontend implementation** — Built the full client side in React and Tailwind CSS, and contributed to admin-side logic alongside the other two team members.`,
-      },
-      {
-        id: "b12feed-3",
-        type: "markdown",
-        order: 3,
-        content: `## Designing the Auth Layer
-
-The sign-in and recovery flow gets the same state coverage as the rest of the product: a default state, inline field-level validation on login, a distinct "check your email" confirmation after a reset request (with a resend cooldown so admins aren't tempted to spam the request), and clear success and error states when setting a new password.
-
-**States covered:** Default, Validation error, Recovery sent, Success`,
-      },
-      {
-        id: "b12feed-4",
-        type: "image",
-        order: 4,
-        content: {
-          url: "/projects/b12feed/sign-in-default.png",
-          alt: "B12Feed sign-in screen, default state",
-        },
-      },
-      {
-        id: "b12feed-5",
-        type: "image",
-        order: 5,
-        content: {
-          url: "/projects/b12feed/sign-in-error.png",
-          alt: "B12Feed sign-in screen showing invalid email and incorrect password validation",
-        },
-      },
-      {
-        id: "b12feed-6",
-        type: "image",
-        order: 6,
-        content: {
-          url: "/projects/b12feed/forgot-password.png",
-          alt: "B12Feed forgot password request screen",
-        },
-      },
-      {
-        id: "b12feed-7",
-        type: "image",
-        order: 7,
-        content: {
-          url: "/projects/b12feed/check-your-email.png",
-          alt: "B12Feed check your email confirmation with resend cooldown",
-        },
-      },
-      {
-        id: "b12feed-8",
-        type: "markdown",
-        order: 8,
-        content: `*Detail worth noting: the reset-sent screen swaps its own "Resend link" button for a disabled state with a live countdown rather than just hiding it — so admins always know a resend is coming rather than wondering if the action was lost.*`,
-      },
-      {
-        id: "b12feed-9",
-        type: "image",
-        order: 9,
-        content: {
-          url: "/projects/b12feed/reset-password-default.png",
-          alt: "B12Feed create a new password screen, default state",
-        },
-      },
-      {
-        id: "b12feed-10",
-        type: "image",
-        order: 10,
-        content: {
-          url: "/projects/b12feed/reset-password-error.png",
-          alt: "B12Feed create a new password screen showing validation errors",
-        },
-      },
-      {
-        id: "b12feed-11",
-        type: "markdown",
-        order: 11,
-        content: `## Account & Security Settings
-
-Once signed in, an admin's Settings page is split into three tabs — Account, Security, and Notifications — so identity details, credentials, and alert preferences aren't competing for space on one long form. Security holds password changes; Notifications lets an admin choose what actually needs their attention (new organization requests, flagged listings, failed pickups, system updates) instead of getting everything by default.`,
-      },
-      {
-        id: "b12feed-12",
-        type: "image",
-        order: 12,
-        content: {
-          url: "/projects/b12feed/settings-account.png",
-          alt: "B12Feed settings, Account tab with profile and contact details",
-        },
-      },
-      {
-        id: "b12feed-13",
-        type: "image",
-        order: 13,
-        content: {
-          url: "/projects/b12feed/settings-security.png",
-          alt: "B12Feed settings, Security tab with password change fields",
-        },
-      },
-      {
-        id: "b12feed-14",
-        type: "image",
-        order: 14,
-        content: {
-          url: "/projects/b12feed/settings-notifications.png",
-          alt: "B12Feed settings, Notifications tab with selectable alert preferences",
-        },
-      },
-      {
-        id: "b12feed-15",
-        type: "image",
-        order: 15,
-        content: {
-          url: "/projects/b12feed/password-updated.png",
-          alt: "B12Feed password updated confirmation screen",
-        },
-      },
-      {
-        id: "b12feed-16",
-        type: "markdown",
-        order: 16,
-        content: `## What That Account Layer Supports
-
-Once an admin is signed in, the console is where B12Feed's actual operation happens: reviewing organizations that want to join the platform, approving or rejecting them, and keeping the food-listings feed clean by flagging, resolving, or removing entries that need attention.`,
-      },
-      {
-        id: "b12feed-17",
-        type: "image",
-        order: 17,
-        content: {
-          url: "/projects/b12feed/dashboard.png",
-          alt: "B12Feed admin dashboard with platform overview stats and pending requests",
-        },
-      },
-      {
-        id: "b12feed-18",
-        type: "image",
-        order: 18,
-        content: {
-          url: "/projects/b12feed/organizations.png",
-          alt: "B12Feed organizations list with approval and status actions",
-        },
-      },
-      {
-        id: "b12feed-19",
-        type: "image",
-        order: 19,
-        content: {
-          url: "/projects/b12feed/food-listings.png",
-          alt: "B12Feed food listings with status and moderation actions",
-        },
-      },
-      {
-        id: "b12feed-20",
-        type: "markdown",
-        order: 20,
-        content: `## Team & My Role
-
-- **Design** — Owned end to end by me: flows, states, and the visual system across the admin console.
-- **Frontend** — Client side built by me in React and Tailwind CSS.
-- **Backend & admin logic** — Built with the other two members of the team, with my input on admin-side functionality.
-
-## Where It Stands
-
-B12Feed is live and in active use.
-
-- **195** food items routed to partner organizations
-- **20** partner organizations onboarded
-- **~45%** organization growth this year
-
-*Note on these numbers: these are current platform figures as of this write-up, not a claim about what the login/account redesign specifically caused — they're here to show the product is real and operating, not a concept.*`,
       },
     ],
   },
