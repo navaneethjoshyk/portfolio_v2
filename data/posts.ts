@@ -627,4 +627,167 @@ The refined flow paired ID-verified registration with values-based filtering and
       },
     ],
   },
+  {
+    id: "ohana",
+    title: "OHANA Account Experience",
+    slug: "ohana",
+    status: "published",
+    featured: true,
+    type: "project",
+    category: "Enterprise B2B",
+    excerpt:
+      "End-to-end design for sign-up and sign-in, account & security settings, and verification and session states on OHANA's B2B platform — inside an established design system, with full state coverage for the paths that don't go smoothly.",
+    createdAt: "2024-09-05T00:00:00.000Z",
+    updatedAt: "2025-09-20T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "ohana-1",
+        type: "markdown",
+        order: 1,
+        content: `OHANA is an enterprise B2B telecom platform used by business customers to manage their accounts and services. As Software & UI/UX Lead, I owned the identity surface of the product end to end — every screen a customer touches between creating an account and managing it day to day: sign-up, sign-in, account and security settings, and the verification and session states that sit around them.
+
+All of it was delivered inside OHANA's established Figma design system, which I worked within and extended rather than around, so new account flows stayed consistent with the rest of the product as it grew.
+
+**Role:** Software & UI/UX Lead
+**Team:** 4 engineers, cross-functional
+**Timeline:** September 2024 – September 2025`,
+      },
+      {
+        id: "ohana-2",
+        type: "markdown",
+        order: 2,
+        content: `## What I Owned
+
+- **Sign-up & sign-in** — Entry points for new and returning business customers, including failure and retry paths.
+- **Account & security settings** — Where customers manage account details, permissions, and security options.
+- **Verification & session states** — Identity verification, session timeout and expiry, and re-authentication.
+- **Design system extension** — New identity-flow components built to fit the existing system, not bypass it.`,
+      },
+      {
+        id: "ohana-3",
+        type: "markdown",
+        order: 3,
+        content: `## The Problem
+
+*Draft — swap in your own words:*
+
+Before this work, OHANA's sign-up, sign-in, and account-settings screens had grown inconsistently as the product expanded — they covered the happy path but not much else, so edge cases like a failed verification, an expired session, or an incomplete profile had no clear, on-brand way forward. That gap was the starting point for auditing the existing flows and rebuilding them with full state coverage inside the design system, rather than layering one-off fixes on top of what already existed.`,
+      },
+      {
+        id: "ohana-4",
+        type: "markdown",
+        order: 4,
+        content: `## Process
+
+- Audited the existing sign-up, sign-in, and account-settings screens to map the current state and find inconsistencies across the flow.
+- Ran design workshops and journey-mapping sessions with product, engineering, and business stakeholders to align on the future state.
+- Designed end-to-end flows in Figma with full state coverage — not just the happy path.
+- Partnered directly with engineering on routing logic and session/technical dependencies, reasoning through edge cases together rather than handing off a spec and moving on.
+- Tested key screens with keyboard-only navigation and a screen reader, and ran accessibility reviews against WCAG 2.1 AA.
+- Ran usability tests on the redesigned flows and iterated based on what testing surfaced.`,
+      },
+      {
+        id: "ohana-5",
+        type: "markdown",
+        order: 5,
+        content: `## Designing for the States That Aren't the Happy Path
+
+A sign-up or sign-in flow is only as good as what happens when something goes wrong. Every screen in this system was designed against the same state checklist: **Empty, Loading, Error, Edge case, Recovery, Success.**
+
+The flow moves from sign-in entry through credential checks to identity verification, with a clear error/retry path when something goes wrong, and session expiry and re-authentication handled as first-class states rather than dead ends.`,
+      },
+      {
+        id: "ohana-6",
+        type: "markdown",
+        order: 6,
+        content: `## Outcome
+
+- **18%** estimated task-completion improvement across 3 core flows
+- **12+** design changes shaped by workshops & usability testing
+- **AA** WCAG 2.1 accessibility target tested and met
+
+I designed and specified every flow and state; engineering built to those specs, with me partnering directly on routing logic and session-handling questions as they came up during implementation.`,
+      },
+    ],
+  },
+  {
+    id: "weunited-verification",
+    title: "WeUnited Verification System",
+    slug: "weunited-verification",
+    status: "published",
+    featured: false,
+    type: "project",
+    category: "Trust & Identity",
+    excerpt:
+      "An ID-verification and values-based filtering system for a trust-first matrimony platform concept — designed to make identity checks feel like part of building trust, not an obstacle to it.",
+    createdAt: "2026-07-05T00:00:00.000Z",
+    updatedAt: "2026-08-15T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "weunited-verification-1",
+        type: "markdown",
+        order: 1,
+        content: `WeUnited is an independent concept for a trust-first matrimony platform, built solo end to end — design and frontend. The core design problem was identity: users need real confidence that who they're matching with is who they say they are, without the verification step feeling bureaucratic or eroding the warmth of a platform meant to feel personal and culturally grounded.
+
+I designed an ID-verification flow and a values-based filtering system that sit inside the same secure digital interface, so security and cultural fit are handled as one continuous experience rather than a compliance gate bolted onto the front of the product.
+
+**Role:** Solo Designer
+**Tools:** Next.js, Tailwind v4, Framer Motion
+**Year:** 2026`,
+      },
+      {
+        id: "weunited-verification-2",
+        type: "markdown",
+        order: 2,
+        content: `## What I Designed
+
+- **ID verification flow** — Upload, review, and status states for confirming a user's identity.
+- **Account & security surface** — Where verification status and account security live for the user.
+- **Values-based filtering** — Preference and cultural-fit filtering, designed to reduce fatigue from over-filtering.
+- **Frontend build** — Implemented in Next.js, Tailwind v4, and Framer Motion.`,
+      },
+      {
+        id: "weunited-verification-3",
+        type: "markdown",
+        order: 3,
+        content: `## The Problem
+
+*Draft — swap in your own words:*
+
+Verification screens on most platforms read as a compliance hurdle wedged between sign-up and the actual product — cold, bureaucratic, and disconnected from everything around them. For a trust-first matrimony platform, where users are handing over real identity documents, that mismatch matters more: an ID check that feels invasive rather than reassuring can push people to abandon registration before they ever reach a match. This project set out to design verification as part of the trust-building experience itself, not an obstacle in front of it.`,
+      },
+      {
+        id: "weunited-verification-4",
+        type: "markdown",
+        order: 4,
+        content: `## Design Goals
+
+- **Increase verified registrations** — Make verification feel like a short, guided step rather than a barrier, reducing drop-off during onboarding.
+- **Reduce filtering fatigue** — Structure values-based filters so users narrow matches with confidence instead of over-filtering out of anxiety.
+- **Keep performance high** — A secure flow shouldn't feel slow — built with performance in mind on Next.js.`,
+      },
+      {
+        id: "weunited-verification-5",
+        type: "markdown",
+        order: 5,
+        content: `## Flow & States
+
+Four states carried the verification flow: **Pending verification, Verified, Rejected/retry, Incomplete profile.**
+
+The flow runs from sign-up into a guided ID-upload step, branching to either a verified state that unlocks values-based filtering, or a rejected/retry state that surfaces a clear reason and next step rather than a dead end.`,
+      },
+      {
+        id: "weunited-verification-6",
+        type: "markdown",
+        order: 6,
+        content: `## Outcome
+
+Designed to increase verified registrations and reduce filtering fatigue by pairing identity verification with the matching experience, rather than treating them as separate steps.
+
+*Outcome is currently a qualitative design goal — swap in a real, measured signal (tester feedback, completion time, a before/after comparison) if you have one.*`,
+      },
+    ],
+  },
 ];
