@@ -4,8 +4,7 @@ import {
   UtensilsCrossed,
   CreditCard,
   Heart,
-  Building2,
-  ShieldCheck,
+  Recycle,
   Briefcase,
   type LucideIcon,
 } from "lucide-react";
@@ -20,8 +19,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   hospitality: UtensilsCrossed,
   fintech: CreditCard,
   matrimony: Heart,
-  "enterprise b2b": Building2,
-  "trust & identity": ShieldCheck,
+  "food rescue": Recycle,
 };
 
 function getCategoryIcon(category?: string): LucideIcon {

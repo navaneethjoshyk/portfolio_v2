@@ -628,165 +628,219 @@ The refined flow paired ID-verified registration with values-based filtering and
     ],
   },
   {
-    id: "ohana",
-    title: "OHANA Account Experience",
-    slug: "ohana",
+    id: "b12feed",
+    title: "B12Feed Account Access",
+    slug: "b12feed",
     status: "published",
     featured: true,
     type: "project",
-    category: "Enterprise B2B",
-    excerpt:
-      "End-to-end design for sign-up and sign-in, account & security settings, and verification and session states on OHANA's B2B platform — inside an established design system, with full state coverage for the paths that don't go smoothly.",
-    createdAt: "2024-09-05T00:00:00.000Z",
-    updatedAt: "2025-09-20T00:00:00.000Z",
-    viewCount: 0,
-    cells: [
-      {
-        id: "ohana-1",
-        type: "markdown",
-        order: 1,
-        content: `OHANA is an enterprise B2B telecom platform used by business customers to manage their accounts and services. As Software & UI/UX Lead, I owned the identity surface of the product end to end — every screen a customer touches between creating an account and managing it day to day: sign-up, sign-in, account and security settings, and the verification and session states that sit around them.
-
-All of it was delivered inside OHANA's established Figma design system, which I worked within and extended rather than around, so new account flows stayed consistent with the rest of the product as it grew.
-
-**Role:** Software & UI/UX Lead
-**Team:** 4 engineers, cross-functional
-**Timeline:** September 2024 – September 2025`,
-      },
-      {
-        id: "ohana-2",
-        type: "markdown",
-        order: 2,
-        content: `## What I Owned
-
-- **Sign-up & sign-in** — Entry points for new and returning business customers, including failure and retry paths.
-- **Account & security settings** — Where customers manage account details, permissions, and security options.
-- **Verification & session states** — Identity verification, session timeout and expiry, and re-authentication.
-- **Design system extension** — New identity-flow components built to fit the existing system, not bypass it.`,
-      },
-      {
-        id: "ohana-3",
-        type: "markdown",
-        order: 3,
-        content: `## The Problem
-
-*Draft — swap in your own words:*
-
-Before this work, OHANA's sign-up, sign-in, and account-settings screens had grown inconsistently as the product expanded — they covered the happy path but not much else, so edge cases like a failed verification, an expired session, or an incomplete profile had no clear, on-brand way forward. That gap was the starting point for auditing the existing flows and rebuilding them with full state coverage inside the design system, rather than layering one-off fixes on top of what already existed.`,
-      },
-      {
-        id: "ohana-4",
-        type: "markdown",
-        order: 4,
-        content: `## Process
-
-- Audited the existing sign-up, sign-in, and account-settings screens to map the current state and find inconsistencies across the flow.
-- Ran design workshops and journey-mapping sessions with product, engineering, and business stakeholders to align on the future state.
-- Designed end-to-end flows in Figma with full state coverage — not just the happy path.
-- Partnered directly with engineering on routing logic and session/technical dependencies, reasoning through edge cases together rather than handing off a spec and moving on.
-- Tested key screens with keyboard-only navigation and a screen reader, and ran accessibility reviews against WCAG 2.1 AA.
-- Ran usability tests on the redesigned flows and iterated based on what testing surfaced.`,
-      },
-      {
-        id: "ohana-5",
-        type: "markdown",
-        order: 5,
-        content: `## Designing for the States That Aren't the Happy Path
-
-A sign-up or sign-in flow is only as good as what happens when something goes wrong. Every screen in this system was designed against the same state checklist: **Empty, Loading, Error, Edge case, Recovery, Success.**
-
-The flow moves from sign-in entry through credential checks to identity verification, with a clear error/retry path when something goes wrong, and session expiry and re-authentication handled as first-class states rather than dead ends.`,
-      },
-      {
-        id: "ohana-6",
-        type: "markdown",
-        order: 6,
-        content: `## Outcome
-
-- **18%** estimated task-completion improvement across 3 core flows
-- **12+** design changes shaped by workshops & usability testing
-- **AA** WCAG 2.1 accessibility target tested and met
-
-I designed and specified every flow and state; engineering built to those specs, with me partnering directly on routing logic and session-handling questions as they came up during implementation.`,
-      },
+    category: "Food Rescue",
+    thumbnail: {
+      url: "/projects/b12feed/dashboard.png",
+      alt: "B12Feed admin dashboard",
+    },
+    heroImages: [
+      { url: "/projects/b12feed/dashboard.png", alt: "B12Feed admin dashboard" },
+      { url: "/projects/b12feed/sign-in-default.png", alt: "B12Feed sign-in screen" },
     ],
-  },
-  {
-    id: "weunited-verification",
-    title: "WeUnited Verification System",
-    slug: "weunited-verification",
-    status: "published",
-    featured: false,
-    type: "project",
-    category: "Trust & Identity",
     excerpt:
-      "An ID-verification and values-based filtering system for a trust-first matrimony platform concept — designed to make identity checks feel like part of building trust, not an obstacle to it.",
-    createdAt: "2026-07-05T00:00:00.000Z",
-    updatedAt: "2026-08-15T00:00:00.000Z",
+      "B12Feed connects surplus food from local businesses with community organizations that redistribute it. I designed and helped build the platform's admin experience — from signing in and recovering an account, to the security and notification settings that keep it trustworthy day to day.",
+    createdAt: "2026-01-05T00:00:00.000Z",
+    updatedAt: "2026-08-20T00:00:00.000Z",
     viewCount: 0,
     cells: [
       {
-        id: "weunited-verification-1",
+        id: "b12feed-1",
         type: "markdown",
         order: 1,
-        content: `WeUnited is an independent concept for a trust-first matrimony platform, built solo end to end — design and frontend. The core design problem was identity: users need real confidence that who they're matching with is who they say they are, without the verification step feeling bureaucratic or eroding the warmth of a platform meant to feel personal and culturally grounded.
+        content: `B12Feed's admin console is used by a small internal team to manage two things that matter a lot to the people relying on the platform: which partner organizations are trusted to receive food, and which food listings are active, flagged, or need attention. Because the console holds account credentials, contact details for real charities, and food-safety-relevant status data, the login and account layer couldn't be an afterthought — it needed to feel as considered as the dashboard itself.
 
-I designed an ID-verification flow and a values-based filtering system that sit inside the same secure digital interface, so security and cultural fit are handled as one continuous experience rather than a compliance gate bolted onto the front of the product.
+This was a three-person build. I owned the UI/UX design end to end and built the client side in React and Tailwind CSS, working closely with the other two team members on backend logic and admin-side functionality.
 
-**Role:** Solo Designer
-**Tools:** Next.js, Tailwind v4, Framer Motion
-**Year:** 2026`,
+**Role:** UI/UX Design + Frontend
+**Team:** 3-person build
+**Status:** Live product
+**Stack:** React, Tailwind CSS`,
       },
       {
-        id: "weunited-verification-2",
+        id: "b12feed-2",
         type: "markdown",
         order: 2,
-        content: `## What I Designed
+        content: `## What I Designed & Built
 
-- **ID verification flow** — Upload, review, and status states for confirming a user's identity.
-- **Account & security surface** — Where verification status and account security live for the user.
-- **Values-based filtering** — Preference and cultural-fit filtering, designed to reduce fatigue from over-filtering.
-- **Frontend build** — Implemented in Next.js, Tailwind v4, and Framer Motion.`,
+- **Sign-in & recovery flow** — Login with inline validation, a "forgot password" request step, an email-sent confirmation with a resend cooldown, and a guided password-reset screen.
+- **Account & security settings** — A settings area split into Account, Security, and Notifications — where admins update their profile, change their password, and control what they're alerted about.
+- **Admin workflows** — Organization approvals, a pending-requests queue, and food-listing moderation (flag, resolve, remove) — the day-to-day tools built on top of that trusted account layer.
+- **Frontend implementation** — Built the full client side in React and Tailwind CSS, and contributed to admin-side logic alongside the other two team members.`,
       },
       {
-        id: "weunited-verification-3",
+        id: "b12feed-3",
         type: "markdown",
         order: 3,
-        content: `## The Problem
+        content: `## Designing the Auth Layer
 
-*Draft — swap in your own words:*
+The sign-in and recovery flow gets the same state coverage as the rest of the product: a default state, inline field-level validation on login, a distinct "check your email" confirmation after a reset request (with a resend cooldown so admins aren't tempted to spam the request), and clear success and error states when setting a new password.
 
-Verification screens on most platforms read as a compliance hurdle wedged between sign-up and the actual product — cold, bureaucratic, and disconnected from everything around them. For a trust-first matrimony platform, where users are handing over real identity documents, that mismatch matters more: an ID check that feels invasive rather than reassuring can push people to abandon registration before they ever reach a match. This project set out to design verification as part of the trust-building experience itself, not an obstacle in front of it.`,
+**States covered:** Default, Validation error, Recovery sent, Success`,
       },
       {
-        id: "weunited-verification-4",
-        type: "markdown",
+        id: "b12feed-4",
+        type: "image",
         order: 4,
-        content: `## Design Goals
-
-- **Increase verified registrations** — Make verification feel like a short, guided step rather than a barrier, reducing drop-off during onboarding.
-- **Reduce filtering fatigue** — Structure values-based filters so users narrow matches with confidence instead of over-filtering out of anxiety.
-- **Keep performance high** — A secure flow shouldn't feel slow — built with performance in mind on Next.js.`,
+        content: {
+          url: "/projects/b12feed/sign-in-default.png",
+          alt: "B12Feed sign-in screen, default state",
+        },
       },
       {
-        id: "weunited-verification-5",
-        type: "markdown",
+        id: "b12feed-5",
+        type: "image",
         order: 5,
-        content: `## Flow & States
-
-Four states carried the verification flow: **Pending verification, Verified, Rejected/retry, Incomplete profile.**
-
-The flow runs from sign-up into a guided ID-upload step, branching to either a verified state that unlocks values-based filtering, or a rejected/retry state that surfaces a clear reason and next step rather than a dead end.`,
+        content: {
+          url: "/projects/b12feed/sign-in-error.png",
+          alt: "B12Feed sign-in screen showing invalid email and incorrect password validation",
+        },
       },
       {
-        id: "weunited-verification-6",
-        type: "markdown",
+        id: "b12feed-6",
+        type: "image",
         order: 6,
-        content: `## Outcome
+        content: {
+          url: "/projects/b12feed/forgot-password.png",
+          alt: "B12Feed forgot password request screen",
+        },
+      },
+      {
+        id: "b12feed-7",
+        type: "image",
+        order: 7,
+        content: {
+          url: "/projects/b12feed/check-your-email.png",
+          alt: "B12Feed check your email confirmation with resend cooldown",
+        },
+      },
+      {
+        id: "b12feed-8",
+        type: "markdown",
+        order: 8,
+        content: `*Detail worth noting: the reset-sent screen swaps its own "Resend link" button for a disabled state with a live countdown rather than just hiding it — so admins always know a resend is coming rather than wondering if the action was lost.*`,
+      },
+      {
+        id: "b12feed-9",
+        type: "image",
+        order: 9,
+        content: {
+          url: "/projects/b12feed/reset-password-default.png",
+          alt: "B12Feed create a new password screen, default state",
+        },
+      },
+      {
+        id: "b12feed-10",
+        type: "image",
+        order: 10,
+        content: {
+          url: "/projects/b12feed/reset-password-error.png",
+          alt: "B12Feed create a new password screen showing validation errors",
+        },
+      },
+      {
+        id: "b12feed-11",
+        type: "markdown",
+        order: 11,
+        content: `## Account & Security Settings
 
-Designed to increase verified registrations and reduce filtering fatigue by pairing identity verification with the matching experience, rather than treating them as separate steps.
+Once signed in, an admin's Settings page is split into three tabs — Account, Security, and Notifications — so identity details, credentials, and alert preferences aren't competing for space on one long form. Security holds password changes; Notifications lets an admin choose what actually needs their attention (new organization requests, flagged listings, failed pickups, system updates) instead of getting everything by default.`,
+      },
+      {
+        id: "b12feed-12",
+        type: "image",
+        order: 12,
+        content: {
+          url: "/projects/b12feed/settings-account.png",
+          alt: "B12Feed settings, Account tab with profile and contact details",
+        },
+      },
+      {
+        id: "b12feed-13",
+        type: "image",
+        order: 13,
+        content: {
+          url: "/projects/b12feed/settings-security.png",
+          alt: "B12Feed settings, Security tab with password change fields",
+        },
+      },
+      {
+        id: "b12feed-14",
+        type: "image",
+        order: 14,
+        content: {
+          url: "/projects/b12feed/settings-notifications.png",
+          alt: "B12Feed settings, Notifications tab with selectable alert preferences",
+        },
+      },
+      {
+        id: "b12feed-15",
+        type: "image",
+        order: 15,
+        content: {
+          url: "/projects/b12feed/password-updated.png",
+          alt: "B12Feed password updated confirmation screen",
+        },
+      },
+      {
+        id: "b12feed-16",
+        type: "markdown",
+        order: 16,
+        content: `## What That Account Layer Supports
 
-*Outcome is currently a qualitative design goal — swap in a real, measured signal (tester feedback, completion time, a before/after comparison) if you have one.*`,
+Once an admin is signed in, the console is where B12Feed's actual operation happens: reviewing organizations that want to join the platform, approving or rejecting them, and keeping the food-listings feed clean by flagging, resolving, or removing entries that need attention.`,
+      },
+      {
+        id: "b12feed-17",
+        type: "image",
+        order: 17,
+        content: {
+          url: "/projects/b12feed/dashboard.png",
+          alt: "B12Feed admin dashboard with platform overview stats and pending requests",
+        },
+      },
+      {
+        id: "b12feed-18",
+        type: "image",
+        order: 18,
+        content: {
+          url: "/projects/b12feed/organizations.png",
+          alt: "B12Feed organizations list with approval and status actions",
+        },
+      },
+      {
+        id: "b12feed-19",
+        type: "image",
+        order: 19,
+        content: {
+          url: "/projects/b12feed/food-listings.png",
+          alt: "B12Feed food listings with status and moderation actions",
+        },
+      },
+      {
+        id: "b12feed-20",
+        type: "markdown",
+        order: 20,
+        content: `## Team & My Role
+
+- **Design** — Owned end to end by me: flows, states, and the visual system across the admin console.
+- **Frontend** — Client side built by me in React and Tailwind CSS.
+- **Backend & admin logic** — Built with the other two members of the team, with my input on admin-side functionality.
+
+## Where It Stands
+
+B12Feed is live and in active use.
+
+- **195** food items routed to partner organizations
+- **20** partner organizations onboarded
+- **~45%** organization growth this year
+
+*Note on these numbers: these are current platform figures as of this write-up, not a claim about what the login/account redesign specifically caused — they're here to show the product is real and operating, not a concept.*`,
       },
     ],
   },
