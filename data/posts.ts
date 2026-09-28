@@ -239,6 +239,12 @@ B12Feed is live and in active use.
       { url: "/projects/mediguru/full-page.png", alt: "MediGuru marketing site, full page" },
       { url: "/projects/mediguru/hero.png", alt: "MediGuru hero section" },
     ],
+    figmaLinks: [
+      {
+        label: "View Figma Case Study",
+        url: "https://www.figma.com/design/0VtyHDyTOltnMRCJTssPnj/Medical?node-id=580-577&t=BjylY3zLe8RCh8p0-1",
+      },
+    ],
     excerpt:
       "Redesigning the public marketing site for a HIPAA-compliant telehealth platform \u2014 written to persuade the hospitals that buy it, not the patients and doctors who use it.",
     createdAt: "2022-01-01T00:00:00.000Z",
