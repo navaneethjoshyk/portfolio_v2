@@ -67,6 +67,16 @@ export function MobileNav() {
               >
                 About
               </Link>
+              <Separator className="my-2" />
+              <Link
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+                className="flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-muted hover:text-foreground text-muted-foreground"
+              >
+                Resume
+              </Link>
             </nav>
           </div>
 

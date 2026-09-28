@@ -15,7 +15,7 @@ interface MatrixShaderBackgroundProps {
 export default function MatrixShaderBackground({
   className = "",
   name = "Navaneeth Joshy K",
-  title = "Front-End Developer",
+  title = "UI/UX Designer & Frontend Developer",
   skills = "Figma • React • Tailwind CSS",
   interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {

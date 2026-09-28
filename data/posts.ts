@@ -6,12 +6,13 @@ import { Post } from "@/types/post";
 export const posts: Post[] = [
   {
     id: "b12feed",
-    title: "B12Feed Account Access",
+    title: "B12Feed Admin Console",
     slug: "b12feed",
     status: "published",
     featured: true,
     type: "project",
     category: "Food Rescue",
+    projectType: "Client work",
     thumbnail: {
       url: "/projects/b12feed/dashboard.png",
       alt: "B12Feed admin dashboard",
@@ -34,10 +35,10 @@ export const posts: Post[] = [
 
 This was a three-person build. I owned the UI/UX design end to end and built the client side in React and Tailwind CSS, working closely with the other two team members on backend logic and admin-side functionality.
 
-**Role:** UI/UX Design + Frontend
-**Team:** 3-person build
-**Status:** Live product
-**Stack:** React, Tailwind CSS`,
+- **Role:** UI/UX Design + Frontend
+- **Team:** 3-person build
+- **Status:** Live product
+- **Stack:** React, Tailwind CSS`,
       },
       {
         id: "b12feed-2",
@@ -222,6 +223,123 @@ B12Feed is live and in active use.
     ],
   },
   {
+    id: "mediguru",
+    title: "MediGuru \u2014 Telehealth Marketing Site",
+    slug: "mediguru",
+    status: "published",
+    featured: false,
+    type: "project",
+    category: "Healthcare",
+    projectType: "Client work",
+    thumbnail: {
+      url: "/og-image.png",
+      alt: "MediGuru marketing site case study",
+    },
+    excerpt:
+      "Redesigning the public marketing site for a HIPAA-compliant telehealth platform \u2014 written to persuade the hospitals that buy it, not the patients and doctors who use it.",
+    createdAt: "2022-01-01T00:00:00.000Z",
+    updatedAt: "2024-08-01T00:00:00.000Z",
+    viewCount: 0,
+    cells: [
+      {
+        id: "mediguru-1",
+        type: "markdown",
+        order: 1,
+        content: `I redesigned the marketing website for MediGuru, a HIPAA-compliant telehealth platform that hospitals buy for their patients and doctors. Video visits, records, and insurance all run through one app, and the website's job was to sell that platform to hospital decision-makers.
+
+- **Role:** Sole UI/UX Designer
+- **Scope:** Full landing page redesign
+- **Tool:** Figma
+- **Status:** Launched
+- **Timeline:** Jan 2022 \u2013 Aug 2024 (MediGuru tenure)`,
+      },
+      {
+        id: "mediguru-2",
+        type: "markdown",
+        order: 2,
+        content: `## The Brief
+
+The people who use MediGuru are patients and clinicians, but the people who buy it are hospitals. So the website had a different job from the app: persuade an organization that the platform fits its clinical workflow, protects patient data, and works with the systems it already runs.
+
+Patients and doctors meet over video in one place, and everything around the visit runs through the app too: scheduling, forms, chat, records, and insurance. It's HIPAA-compliant end to end and integrates with the hospital's existing EMR. I was the only designer and owned the page from structure through final Figma screens.
+
+The page had to answer three kinds of buyer:
+
+| Buyer | Their question | What they need to hear |
+| --- | --- | --- |
+| Clinical leads | Will it fit how we work? | It cuts admin work instead of adding to it |
+| IT and compliance | Is it safe to plug in? | HIPAA, accreditation, and it talks to our EHR |
+| Administrators | Is this worth it? | Who else trusts them, and what it does for patients |`,
+      },
+      {
+        id: "mediguru-3",
+        type: "markdown",
+        order: 3,
+        content: `## Page Structure
+
+A hospital buyer reads the page to answer a set of questions, so I ordered the sections as one continuous case: the problem first, then what the product does, then the proof a cautious buyer needs before booking a demo.
+
+- **Hero** answers "What is this?" \u2014 telemedicine built into your clinical workflow, with one clear action.
+- **Radical change** answers "Why now?" \u2014 what patients need and what providers need, side by side.
+- **Integration promise** answers "Will it fit?" \u2014 works with your EMR, patient portal, and scheduling.
+- **Behavioral health** answers "What gap does it fill?" \u2014 bringing mental health into primary care.
+- **Telehealth and workflows** answers "What does it actually do?" \u2014 video visits, transcription, and AI-assisted clinical workflows.
+- **IT services** answers "Is it safe and inclusive?" \u2014 accessibility, HIPAA and URAC, HL7 to FHIR.
+- **Technology and partners** answers "Can they deliver?" \u2014 a capabilities list and names buyers already know.`,
+      },
+      {
+        id: "mediguru-4",
+        type: "markdown",
+        order: 4,
+        content: `## Key Design Decisions
+
+### Two audiences, one split screen
+
+The platform only works if it serves both sides of the visit, so the problem statement shows patients and providers as two equal columns with a divider between them. A hospital buyer sees their doctors' frustrations and their patients' frustrations in one view, which sets up the product as the thing that resolves both.
+
+### Navy for trust, green only for action
+
+Healthcare buyers are cautious, so the base palette is a calm clinical navy on light, airy backgrounds. Green has one job: every call to action on the page is green, from "See it in action!" to "Know more." Because nothing else uses that color, the next step always stands out without needing a louder layout.
+
+### Illustrations to make software concrete
+
+"Clinical workflow automation" means very little on its own. I paired each capability with a flat illustration of the moment it matters: a doctor on a video call beside an appointment card, or a team moving through a checklist. The rows alternate left and right so a long page keeps a steady rhythm, and each block stays short enough to scan.
+
+### Put the proof where IT will look for it
+
+For a hospital, compliance can end the conversation before it starts. The services section names HIPAA and URAC directly, explains that the platform can keep the hospital's existing EHR as the system of record, and covers HL7 to FHIR interoperability. Accessibility gets the largest card because it serves both buyer and patient.
+
+The page closes with partner logos \u2014 Redox, Azure, athenahealth, and Microsoft \u2014 so the last thing a buyer sees is names they already trust.`,
+      },
+      {
+        id: "mediguru-5",
+        type: "markdown",
+        order: 5,
+        content: `## Outcome
+
+The redesigned site launched as MediGuru's public face to hospitals. I didn't have access to analytics after launch, so I can't point to numbers here \u2014 that's a gap in how I closed this project out, not a result I'm claiming. Next time I'd agree on success measures with the client before designing, starting with:
+
+- Click-through on "See it in action!" and demo requests from the page
+- Scroll depth, to see whether buyers reach the compliance and partner sections
+- Clicks on each feature row, to show which capability sells the platform`,
+      },
+      {
+        id: "mediguru-6",
+        type: "markdown",
+        order: 6,
+        content: `## What I'd Do Differently
+
+| Area | Change | Why |
+| --- | --- | --- |
+| Research | Interview a hospital buyer first | The structure is based on what I believed buyers would ask. A few short interviews with clinical leads or IT managers would have tested that order. |
+| Accessibility | Hold the page to the standard it sells | The page promotes an accessibility extension, but some copy is small, light-grey text on a pale background. I'd check every text style against WCAG 2.1 AA and raise the smallest sizes. |
+| Content | Source and check every number | The behavioral health stat reads "up to 1%," which works against the argument of that section. A claim like that needs a cited source and a review before launch. |
+| Content | Give every card its own message | The HL7 to FHIR card repeats the Security card's confidentiality copy. It should explain what FHIR interoperability means for the hospital's data. |
+| Keep | One accent color for action | Reserving green for calls to action worked well on a long page, and I'd carry that rule into future B2B healthcare work. |`,
+      },
+    ],
+  },
+  {
     id: "care-calendar",
     title: "Care Calendar",
     slug: "care-calendar",
@@ -229,6 +347,7 @@ B12Feed is live and in active use.
     featured: false,
     type: "project",
     category: "Healthcare",
+    projectType: "Academic",
     thumbnail: {
       url: "/projects/care-calendar/cover.svg",
       alt: "Care Calendar cover",
@@ -247,11 +366,11 @@ B12Feed is live and in active use.
         id: "care-calendar-1",
         type: "markdown",
         order: 1,
-        content: `Care Calendar reimagines healthcare booking for newcomers who find existing scheduling platforms difficult to navigate and slow to use. The goal was to turn a fragmented booking experience into a single, high-performance system that keeps caregivers oriented at every step.
+        content: `Care Calendar reimagines healthcare booking for newcomers and the family members or caregivers who often manage appointments on their behalf. Existing scheduling platforms were hard to navigate and slow to use; the goal was to turn that fragmented booking experience into a single, high-performance system that keeps a caregiver oriented at every step, even when they're booking care for someone else.
 
-**Responsibilities:** UI/UX Design, Full-Stack Development
-**Tools:** Figma, React, Tailwind CSS
-**Timeline:** January – April 2026`,
+- **Responsibilities:** UI/UX Design, Full-Stack Development
+- **Tools:** Figma, React, Tailwind CSS
+- **Timeline:** January – April 2026`,
       },
       {
         id: "care-calendar-2",
@@ -270,14 +389,13 @@ Healthcare access is challenging for newcomers, and the booking systems meant to
         order: 3,
         content: `## How Might We
 
-- **Efficiency** — reduce manual documentation by 50%?
-- **Cognitive load** — display alerts without causing fatigue?
-- **Accessibility** — design a UI operable with one hand?
-- **Data integrity** — ensure sync in low-connectivity zones?
-- **Scalability** — handle 200% surges during peak periods?
-- **Well-being** — celebrate completed tasks to boost morale?
+Of the questions we explored early on, these are the three the shipped design actually addresses:
 
-**Hypothesis:** implementing a traffic-controlled logic reduces fatigue and increases accuracy.`,
+- **Cognitive load** — display alerts without causing fatigue?
+- **Accessibility** — design a UI operable with one hand, for someone juggling a phone and a caregiving task at the same time?
+- **Data integrity** — keep appointments in sync in low-connectivity zones?
+
+**Hypothesis:** structured, priority-based alerting reduces fatigue without sacrificing accuracy.`,
       },
       {
         id: "care-calendar-4",
@@ -293,6 +411,8 @@ Healthcare access is challenging for newcomers, and the booking systems meant to
         type: "markdown",
         order: 5,
         content: `## User Persona — The Caregiver
+
+Booking and tracking care for someone else — a parent, a child, a newcomer family member still learning the healthcare system — is a distinct use case from booking for yourself, and it's who this design centers.
 
 > "I need to know exactly what is next, right now."
 
@@ -340,9 +460,9 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
         order: 10,
         content: `## Evaluation
 
-- **Desirability** — 94% of test participants reported decreased stress using the new flow.
-- **Feasibility** — seamless REST API integration into the existing scheduling backend.
-- **Viability** — an estimated 40% reduction in day-to-day operations overhead.`,
+- **Desirability** — in a small usability test, most participants said the new flow felt calmer and easier to follow than the platforms they'd used before.
+- **Feasibility** — the prototype integrates cleanly with a REST API against the existing scheduling backend, so the flow isn't just a visual mockup.
+- **Viability** — the reduced manual documentation and structured alerting were designed to cut day-to-day operations overhead; this is a design goal based on the reduction in steps, not a measured result from a live deployment.`,
       },
     ],
   },
@@ -354,6 +474,7 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
     featured: true,
     type: "project",
     category: "Sustainable Construction",
+    projectType: "Academic",
     thumbnail: {
       url: "/projects/infinite-housing/cover.png",
       alt: "Infinite Housing cover",
@@ -376,8 +497,8 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
     ],
     excerpt:
       "A capstone platform that turns sustainable-construction certification into a guided, mobile-first journey for manufacturers, contractors, and first-time builders.",
-    createdAt: "2026-01-10T00:00:00.000Z",
-    updatedAt: "2026-05-25T00:00:00.000Z",
+    createdAt: "2024-05-01T00:00:00.000Z",
+    updatedAt: "2024-12-15T00:00:00.000Z",
     viewCount: 0,
     cells: [
       {
@@ -386,9 +507,9 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
         order: 1,
         content: `Infinite Housing is a capstone project built around a new category of eco-friendly construction material — one with excellent insulation and thermal mass, but no clear path to market for the people who'd actually use it. The brief: make a credibility-building, mobile-first platform that turns a fragmented, paperwork-heavy certification process into something approachable.
 
-**Responsibilities:** UI/UX Design, Full-Stack Development
-**Tools:** Figma, React, Tailwind CSS, Node.js, MongoDB
-**Timeline:** January – May 2026`,
+- **Responsibilities:** UI/UX Design, Full-Stack Development
+- **Tools:** Figma, React, Tailwind CSS, Node.js, MongoDB
+- **Timeline:** May – December 2024 (Conestoga College capstone)`,
       },
       {
         id: "infinite-housing-2",
@@ -497,6 +618,7 @@ In testing, the onboarding flow read as clear and approachable for a completely 
     featured: true,
     type: "project",
     category: "Healthcare",
+    projectType: "Academic",
     thumbnail: {
       url: "/projects/med-connect/cover.png",
       alt: "Med Connect cover",
@@ -523,9 +645,9 @@ In testing, the onboarding flow read as clear and approachable for a completely 
         order: 1,
         content: `Med Connect tackles a familiar healthcare problem: information scattered across systems, with no holistic view for the specialists who need it. The goal was to unify records and referrals behind a single, secure interface without burying anyone in medical jargon.
 
-**Role:** Lead UI/UX, Frontend Architecture
-**Tools:** Figma, Next.js, TypeScript
-**Timeline:** September – December 2025`,
+- **Role:** Lead UI/UX, Frontend Architecture
+- **Tools:** Figma, Next.js, TypeScript
+- **Timeline:** September – December 2025`,
       },
       {
         id: "med-connect-2",
@@ -560,7 +682,7 @@ Healthcare info is scattered, making a holistic view nearly impossible. The obje
         order: 5,
         content: `## Usability Testing
 
-Five participants ran through a five-task script:
+The usability round tested the marketing and informational site — navigation, findability, and copy clarity — rather than the referral-handoff workflow itself, which wasn't built out far enough yet to test directly. Five participants ran through a five-task script:
 
 1. **Find the Contact Us page** — all 5 found it quickly with no confusion.
 2. A follow-up task surfaced CTA confusion: participants weren't sure where a call-to-action would take them and struggled to navigate back. **Fix:** the destination was redesigned to read as an extension of the same page rather than a separate one.
@@ -604,6 +726,7 @@ The redesigned handover flow and clarified CTA turned a scattered set of referra
     featured: false,
     type: "project",
     category: "Hospitality",
+    projectType: "Concept",
     thumbnail: {
       url: "/projects/ocean-palette/cover.png",
       alt: "Ocean Palette cover",
@@ -624,8 +747,8 @@ The redesigned handover flow and clarified CTA turned a scattered set of referra
         order: 1,
         content: `Fine dining needed a digital presence that felt as curated as the menu itself. Ocean Palette is a high-aesthetic B2C experience built around that idea — a reservation flow that feels less like a form and more like a concierge service.
 
-**Role:** UI/UX Designer & Lead Developer
-**Tools:** Next.js, Framer Motion, Tailwind CSS`,
+- **Role:** UI/UX Designer & Lead Developer
+- **Tools:** Next.js, Framer Motion, Tailwind CSS`,
       },
       {
         id: "ocean-palette-2",
@@ -679,9 +802,10 @@ The objective: create a platform where every interaction feels sophisticated, cl
         order: 7,
         content: `## Outcome
 
-- Aesthetic scores increased by 45% during testing.
-- Drop-off rates fell 22% after moving to one-click booking.
-- Lighthouse performance scores held at 95+ despite the image-heavy design.`,
+- Aesthetic scores increased by 45% in informal design review, moving from the low- to high-fidelity pass.
+- Lighthouse performance scores held at 95+ despite the image-heavy design.
+
+*This was a concept project, not a deployed product — the numbers above come from design-review testing, not live user traffic, so I've left out a drop-off figure I couldn't actually measure.*`,
       },
     ],
   },
@@ -693,6 +817,7 @@ The objective: create a platform where every interaction feels sophisticated, cl
     featured: false,
     type: "project",
     category: "Fintech",
+    projectType: "Concept",
     thumbnail: {
       url: "/projects/cred/cover.svg",
       alt: "Cred app UI cover",
@@ -717,10 +842,10 @@ The objective: create a platform where every interaction feels sophisticated, cl
         id: "cred-1",
         type: "markdown",
         order: 1,
-        content: `CRED's product sits at an unusual intersection for fintech: it has to look trustworthy enough to hold financial data, yet feel rewarding enough that people open it voluntarily. This project is a UI/UX analysis and redesign exploration of that tension.
+        content: `CRED's product sits at an unusual intersection for fintech: it has to look trustworthy enough to hold financial data, yet feel rewarding enough that people open it voluntarily. This project is my own independent UI/UX teardown and redesign exploration of that tension — I have no affiliation with CRED, and none of what follows reflects CRED's actual product roadmap or design decisions.
 
-**Focus:** Fintech UX Analysis
-**Category:** Fintech | UI/UX Design`,
+- **Focus:** Fintech UX Analysis (independent teardown, not a client engagement)
+- **Category:** Fintech | UI/UX Design`,
       },
       {
         id: "cred-2",
@@ -766,6 +891,7 @@ The exploration worked through several interface iterations focused on a copper-
     featured: false,
     type: "project",
     category: "Matrimony",
+    projectType: "Concept",
     thumbnail: {
       url: "/projects/we-united/screen-1.svg",
       alt: "WeUnited app UI cover",
@@ -787,9 +913,9 @@ The exploration worked through several interface iterations focused on a copper-
         order: 1,
         content: `WeUnited is a UI/UX case study for a matrimony platform aimed at high-stakes matchmaking — where trust, not swipes, is the product. The challenge was bridging traditional cultural values with a modern, high-security digital interface.
 
-**Role:** Lead UI/UX Designer & Developer
-**Tools:** Next.js, Tailwind v4, Framer Motion
-**Category:** High-stakes Matchmaking | UI/UX Design`,
+- **Role:** Lead UI/UX Designer & Developer
+- **Tools:** Next.js, Tailwind v4, Framer Motion
+- **Focus:** High-stakes Matchmaking | UI/UX Design`,
       },
       {
         id: "we-united-2",

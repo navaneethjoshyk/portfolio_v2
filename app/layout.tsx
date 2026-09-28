@@ -47,11 +47,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — link preview`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: ["/og-image.png"],
   },
 };
 
@@ -82,9 +91,12 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
+          <a href="#main-content" className="skip-to-content">
+            Skip to content
+          </a>
           <div className="relative min-h-screen flex flex-col z-10">
             <Header />
-            <main className="relative z-10 flex-1 w-full">
+            <main id="main-content" className="relative z-10 flex-1 w-full">
               <div className="container py-8 md:py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 {children}
               </div>

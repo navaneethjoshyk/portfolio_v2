@@ -57,6 +57,27 @@
   animation-play-state: paused;
 }
 
+/* Skip-to-content link — off-screen until keyboard-focused, then jumps
+   above everything (including the fixed hero background) so keyboard
+   and screen-reader users can bypass the header nav. */
+.skip-to-content {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -190,6 +211,14 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Explicit, visible keyboard-focus indicator on every interactive
+     element — links, buttons, inputs — instead of relying on each
+     component's default (which some browsers/components suppress). */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 
   /* Typography improvements */

@@ -3,12 +3,12 @@
 import { Post } from "@/types/post";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { CategoryBadge } from "./category-badge";
-import { formatDistance } from "date-fns";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import { cn, formatProjectDateRange } from "@/lib/utils";
 
 interface ProjectPostCardProps {
   post: Post;
@@ -21,9 +21,9 @@ export function ProjectPostCard({
 }: ProjectPostCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
-  const formattedDate = formatDistance(new Date(post.updatedAt), new Date(), {
-    addSuffix: true,
-  });
+  // A fixed range ("Jan – Apr 2026") instead of a relative "9 months ago"
+  // label, which only ever makes the work look older.
+  const formattedDate = formatProjectDateRange(post.createdAt, post.updatedAt);
   const previewContent = post.excerpt || "";
   const isCompact = variant === "compact";
 
@@ -180,7 +180,14 @@ export function ProjectPostCard({
         <CardContent className="px-4 py-3 md:px-5 md:py-4 flex flex-col">
           <div className="flex items-start justify-between gap-3 mb-2">
             <div className="space-y-2 flex-1">
-              <CategoryBadge category={post.category} />
+              <div className="flex items-center gap-2 flex-wrap">
+                <CategoryBadge category={post.category} />
+                {post.projectType && (
+                  <Badge variant="outline" className="text-xs">
+                    {post.projectType}
+                  </Badge>
+                )}
+              </div>
               <p className="text-sm text-muted-foreground font-medium">
                 {formattedDate}
               </p>

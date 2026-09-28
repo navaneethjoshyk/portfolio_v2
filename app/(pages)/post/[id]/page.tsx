@@ -2,9 +2,10 @@ import { notFound } from "next/navigation";
 import { posts } from "@/data/posts";
 import { PostsApi } from "@/lib/posts-api";
 import { PostCell } from "@/components/post/post-cell";
-import { formatDistance } from "date-fns";
+import { formatProjectDateRange } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Metadata } from "next";
 import { AUTHOR_NAME } from "@/lib/site-config";
@@ -45,7 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     post.excerpt || `A UX/UI case study by ${AUTHOR_NAME}: ${post.title}.`;
   const canonicalPath = `/post/${post.id}`;
-  const ogImage = post.heroImages?.[0] ?? post.thumbnail;
+  // Fall back to the site's default link-preview image so every case
+  // study has an og:image even if it has no screenshots of its own yet.
+  const ogImage = post.heroImages?.[0] ?? post.thumbnail ?? {
+    url: "/og-image.png",
+    alt: `${post.title} — ${AUTHOR_NAME}`,
+  };
 
   return {
     title: post.title,
@@ -58,13 +64,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonicalPath,
       title: post.title,
       description,
-      ...(ogImage && { images: [{ url: ogImage.url, alt: ogImage.alt }] }),
+      images: [{ url: ogImage.url, alt: ogImage.alt }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description,
-      ...(ogImage && { images: [ogImage.url] }),
+      images: [ogImage.url],
     },
   };
 }
@@ -110,9 +116,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const formattedDate = formatDistance(new Date(post.updatedAt), new Date(), {
-    addSuffix: true,
-  });
+  const formattedDate = formatProjectDateRange(post.createdAt, post.updatedAt);
 
   return (
     <article className="max-w-4xl mx-auto py-8">
@@ -127,9 +131,16 @@ export default async function PostPage({ params }: Props) {
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
           {post.title}
         </h1>
-        <p className="text-sm text-muted-foreground font-medium">
-          Updated {formattedDate}
-        </p>
+        <div className="flex items-center gap-3 flex-wrap">
+          {post.projectType && (
+            <Badge variant="outline" className="text-xs">
+              {post.projectType}
+            </Badge>
+          )}
+          <p className="text-sm text-muted-foreground font-medium">
+            {formattedDate}
+          </p>
+        </div>
       </div>
 
       <div className="space-y-12">

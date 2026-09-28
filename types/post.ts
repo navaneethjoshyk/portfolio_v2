@@ -15,6 +15,10 @@ export interface Post {
    * card (e.g. "Healthcare", "Fintech"). See components/post/category-badge.tsx
    * for the icon/color lookup — unmapped labels fall back to a generic style. */
   category?: string;
+  /** How this project came to exist — shown as a small tag on the card and
+   * case-study header so a live client product, a school capstone, and an
+   * unsolicited personal exploration don't all read the same way. */
+  projectType?: "Client work" | "Academic" | "Concept";
   status: "published" | "draft";
   featured: boolean;
   type: PostType;

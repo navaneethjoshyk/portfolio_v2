@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, FileText } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -47,6 +47,12 @@ export function Footer() {
                 <Link href="mailto:navaneethjoshyk8@gmail.com">
                   <Mail className="h-4 w-4" />
                   <span className="sr-only">Email</span>
+                </Link>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <FileText className="h-4 w-4" />
+                  <span className="sr-only">Resume</span>
                 </Link>
               </Button>
             </div>

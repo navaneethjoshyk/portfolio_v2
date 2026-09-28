@@ -39,6 +39,16 @@ export function MainNav() {
             <Link href="/info">About</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            asChild
+            className={`${navigationMenuTriggerStyle()} font-medium`}
+          >
+            <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              Resume
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );
