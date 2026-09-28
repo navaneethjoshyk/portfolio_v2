@@ -1,8 +1,26 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+
+// Tracks the user's OS-level reduced-motion preference so the shader can
+// freeze its animation loop instead of running it constantly in the
+// background — constant motion behind body text hurts readability and can
+// trigger vestibular discomfort for users who've asked for less of it.
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(query.matches);
+    const handler = (event: MediaQueryListEvent) => setReduced(event.matches);
+    query.addEventListener("change", handler);
+    return () => query.removeEventListener("change", handler);
+  }, []);
+
+  return reduced;
+}
 
 interface MatrixShaderBackgroundProps {
   className?: string;
@@ -19,17 +37,18 @@ export default function MatrixShaderBackground({
   skills = "Figma • React • Tailwind CSS",
   interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {
+  const reducedMotion = usePrefersReducedMotion();
+
   return (
     <div
       className={className}
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
+        position: "relative",
+        width: "100%",
         height: "100vh",
         zIndex: 0,
         pointerEvents: "none",
+        overflow: "hidden",
       }}
     >
       <Canvas
@@ -44,7 +63,7 @@ export default function MatrixShaderBackground({
         style={{ width: "100%", height: "100%", pointerEvents: "auto" }}
       >
         <color attach="background" args={["#000000"]} />
-        <MatrixShaderPlane />
+        <MatrixShaderPlane reducedMotion={reducedMotion} />
       </Canvas>
 
       {/* Text Overlay */}
@@ -68,7 +87,7 @@ export default function MatrixShaderBackground({
   );
 }
 
-function MatrixShaderPlane() {
+function MatrixShaderPlane({ reducedMotion }: { reducedMotion: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const { viewport, size } = useThree();
 
@@ -238,6 +257,16 @@ function MatrixShaderPlane() {
   );
 
   useFrame((state) => {
+    // Respect prefers-reduced-motion: freeze the shader on a settled frame
+    // (fully faded in, no further updates) instead of animating forever.
+    if (reducedMotion) {
+      if (meshRef.current) {
+        const material = meshRef.current.material as THREE.ShaderMaterial;
+        material.uniforms.uFadeIn.value = 5;
+      }
+      return;
+    }
+
     const { clock, pointer } = state;
     if (meshRef.current) {
       const material = meshRef.current.material as THREE.ShaderMaterial;

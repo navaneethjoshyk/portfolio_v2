@@ -5,7 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const MONTH_FORMAT = new Intl.DateTimeFormat("en-US", { month: "short" });
+// Pinned to UTC: all dates in data/posts.ts are authored as UTC-midnight ISO
+// strings, and formatting them in the visitor's local timezone (e.g. US/Canada
+// evening hours) can roll early-of-month dates back a month — pinning avoids
+// dates disagreeing between server-rendered (UTC) and client-hydrated (local
+// timezone) output.
+const MONTH_FORMAT = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  timeZone: "UTC",
+});
 
 /**
  * Formats a project's active period as a fixed range (e.g. "Jan – Apr 2026",
@@ -18,8 +26,8 @@ export function formatProjectDateRange(createdAt: string, updatedAt: string) {
 
   const startMonth = MONTH_FORMAT.format(start);
   const endMonth = MONTH_FORMAT.format(end);
-  const startYear = start.getFullYear();
-  const endYear = end.getFullYear();
+  const startYear = start.getUTCFullYear();
+  const endYear = end.getUTCFullYear();
 
   if (startYear === endYear && startMonth === endMonth) {
     return `${startMonth} ${startYear}`;

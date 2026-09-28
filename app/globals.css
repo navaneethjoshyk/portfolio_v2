@@ -57,6 +57,25 @@
   animation-play-state: paused;
 }
 
+/* Respect the OS-level reduced-motion preference: show content in its
+   final, settled state immediately instead of animating it in, and stop
+   the continuously-looping scroll animation. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-300,
+  .animate-fade-in-500,
+  .animate-fade-in-700,
+  .animate-fade-in-900,
+  .animate-fade-in-1000 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-loop-scroll {
+    animation: none;
+  }
+}
+
 /* Skip-to-content link — off-screen until keyboard-focused, then jumps
    above everything (including the fixed hero background) so keyboard
    and screen-reader users can bypass the header nav. */

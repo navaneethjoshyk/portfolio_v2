@@ -23,7 +23,7 @@ export const posts: Post[] = [
     ],
     excerpt:
       "B12Feed connects surplus food from local businesses with community organizations that redistribute it. I designed and helped build the platform's admin experience — from signing in and recovering an account, to the security and notification settings that keep it trustworthy day to day.",
-    createdAt: "2026-01-05T00:00:00.000Z",
+    createdAt: "2025-09-01T00:00:00.000Z",
     updatedAt: "2026-08-20T00:00:00.000Z",
     viewCount: 0,
     cells: [
@@ -33,9 +33,9 @@ export const posts: Post[] = [
         order: 1,
         content: `B12Feed's admin console is used by a small internal team to manage two things that matter a lot to the people relying on the platform: which partner organizations are trusted to receive food, and which food listings are active, flagged, or need attention. Because the console holds account credentials, contact details for real charities, and food-safety-relevant status data, the login and account layer couldn't be an afterthought — it needed to feel as considered as the dashboard itself.
 
-This was a three-person build. I owned the UI/UX design end to end and built the client side in React and Tailwind CSS, working closely with the other two team members on backend logic and admin-side functionality.
+This was a three-person build, spanning two roles on the team: I started as Frontend Developer (Sept – Dec 2025) building the client side, then moved into a Graphic Designer role (Jan 2026 – Present) leading the platform's visual design. Across both, I owned the UI/UX design for this admin console end to end and built the client side in React and Tailwind CSS, working closely with the other two team members on backend logic and admin-side functionality.
 
-- **Role:** UI/UX Design + Frontend
+- **Role:** Frontend Developer → Graphic Designer (UI/UX + Frontend)
 - **Team:** 3-person build
 - **Status:** Live product
 - **Stack:** React, Tailwind CSS`,
@@ -257,6 +257,8 @@ B12Feed is live and in active use.
         order: 1,
         content: `I redesigned the marketing website for MediGuru, a HIPAA-compliant telehealth platform that hospitals buy for their patients and doctors. Video visits, records, and insurance all run through one app, and the website's job was to sell that platform to hospital decision-makers.
 
+This marketing site was one project within a longer UI/UX Designer role at MediGuru (Jan 2022 \u2013 Aug 2024), alongside design work on the product itself \u2014 onboarding, dashboards, and appointment booking \u2014 and the brand identity and design-token system covered below.
+
 - **Role:** Sole UI/UX Designer
 - **Scope:** Full landing page redesign
 - **Tool:** Figma
@@ -395,6 +397,14 @@ The redesigned site launched as MediGuru's public face to hospitals. I didn't ha
 | Content | Source and check every number | The behavioral health stat reads "up to 1%," which works against the argument of that section. A claim like that needs a cited source and a review before launch. |
 | Content | Give every card its own message | The HL7 to FHIR card repeats the Security card's confidentiality copy. It should explain what FHIR interoperability means for the hospital's data. |
 | Keep | One accent color for action | Reserving green for calls to action worked well on a long page, and I'd carry that rule into future B2B healthcare work. |`,
+      },
+      {
+        id: "mediguru-7",
+        type: "markdown",
+        order: 13,
+        content: `## Other Work at MediGuru
+
+This marketing site is the one piece of my MediGuru work I've written up in full. The rest of the role — not detailed here — covered UI/UX design for the product itself: onboarding, dashboards, and appointment booking across MediGuru's 3 core modules. I also built the brand identity guidelines and visual design tokens the whole product and marketing site now share, which cut cross-platform design inconsistencies by 60%.`,
       },
     ],
   },
@@ -753,10 +763,10 @@ The objective: create a platform where every interaction feels sophisticated, cl
         order: 7,
         content: `## Outcome
 
-- Aesthetic scores increased by 45% in informal design review, moving from the low- to high-fidelity pass.
+- Moved from a low-fidelity to a high-fidelity pass based on informal design review feedback.
 - Lighthouse performance scores held at 95+ despite the image-heavy design.
 
-*This was a concept project, not a deployed product — the numbers above come from design-review testing, not live user traffic, so I've left out a drop-off figure I couldn't actually measure.*`,
+*This was a concept project, not a deployed product, so these are design-review and tooling results rather than live user-traffic numbers.*`,
       },
     ],
   },

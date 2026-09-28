@@ -19,8 +19,10 @@ export default function Home() {
   return (
     <>
       {/* Full-screen Matrix Shader Background — dark mode only, purely
-         decorative and fixed in place so it stays put as the page scrolls
-         past it. In light mode this renders nothing, which is why the
+         decorative. Sits in normal document flow (not fixed) so it scrolls
+         away with the rest of the page instead of staying pinned behind the
+         content below, which used to let the hero text show through the
+         cards. In light mode this renders nothing, which is why the
          sections below can't depend on it for content. */}
       <MatrixShaderBackground
         className="dark:block hidden"
@@ -29,11 +31,6 @@ export default function Home() {
         skills="Figma • React • Tailwind CSS"
         interests="UI/UX Design • Accessibility • Web Development"
       />
-
-      {/* Gives the animated hero its own full screen in dark mode before
-         real content begins. Collapses to nothing in light mode, where
-         the hero above is hidden entirely. */}
-      <div className="hidden dark:block h-screen" aria-hidden="true" />
 
       <div className="relative z-10 flex flex-col gap-16 pb-8">
         <section className="space-y-4 pt-4 dark:pt-0">

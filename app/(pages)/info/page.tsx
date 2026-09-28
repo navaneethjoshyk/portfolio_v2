@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { AUTHOR_NAME } from "@/lib/site-config";
 
 const TITLE = "About";
-const DESCRIPTION = `About ${AUTHOR_NAME}, a UI/UX Designer and Front-End Developer based in Canada with 2+ years of experience across healthcare, fintech, housing, media, and enterprise web.`;
+const DESCRIPTION = `About ${AUTHOR_NAME}, a UI/UX Designer and Front-End Developer based in Canada with 2+ years of experience across healthcare, telecom, and non-profit, plus academic and concept work in fintech and housing.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -45,12 +45,12 @@ export default function AboutPage() {
                     Designer and Front-End Developer with 2+ years of
                     experience designing and building digital products end to
                     end — from user research and wireframes to production
-                    front-end code — across five industries: healthcare,
-                    fintech, housing, media, and enterprise web. I combine UX
-                    design with front-end development: design-to-dev
-                    handoffs that work, accessibility built in from the start
-                    (WCAG 2.1 AA), and a good sense of why something
-                    isn&apos;t working before I redesign it.
+                    front-end code — across healthcare, telecom, and
+                    non-profit, plus academic and concept work in fintech and
+                    housing. I combine UX design with front-end development:
+                    design-to-dev handoffs that work, accessibility built in
+                    from the start (WCAG 2.1 AA), and a good sense of why
+                    something isn&apos;t working before I redesign it.
                   </p>
 
                   <h3 className="text-xl font-semibold mt-8 mb-3 tracking-tight">
@@ -67,9 +67,12 @@ export default function AboutPage() {
                       in an academic setting.
                     </li>
                     <li>
-                      <strong>Graphic Designer, B12Feed</strong> (Jan 2026 –
-                      Present) — Own visual design for a 50-screen platform:
-                      building a clear visual hierarchy and turning
+                      <strong>
+                        Graphic Designer (UI/visual design across a
+                        50-screen platform), B12Feed
+                      </strong>{" "}
+                      (Jan 2026 – Present) — Own visual design for the
+                      platform: building a clear visual hierarchy and turning
                       wireframes into high-fidelity Figma designs across
                       three separate brand guidelines.
                     </li>
@@ -87,7 +90,7 @@ export default function AboutPage() {
                       workshops, journey mapping, and usability tests that
                       shaped 12+ design changes, and led UX-strategy and
                       design-system work that improved task completion across
-                      3 core product flows by an estimated 18%.
+                      3 core product flows.
                     </li>
                     <li>
                       <strong>UI/UX Designer, MediGuru</strong> (Jan 2022 –
@@ -202,7 +205,7 @@ export default function AboutPage() {
                       </Button>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      📍 Based in Ontario, Canada
+                      📍 Brampton, ON (GTA)
                     </p>
                   </div>
                 </div>

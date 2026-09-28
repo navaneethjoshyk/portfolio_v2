@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { cn, formatProjectDateRange } from "@/lib/utils";
 
@@ -164,22 +165,46 @@ export function ProjectPostCard({
       className="w-full overflow-hidden transition-all duration-500 hover:shadow-md dark:hover:shadow-primary/5 hover:scale-[1.005] transform-gpu"
     >
       <Link href={`/post/${post.id}`} className="block">
-        {/* Big typographic "cover" — the project's own name standing in
-           for a screenshot, instead of a (blurry, easily-outdated) image. */}
-        <div
-          className={cn(
-            "flex items-center justify-center bg-muted/60 dark:bg-muted/20 px-6 text-center",
-            isCompact ? "h-40" : "h-56 md:h-64"
-          )}
-        >
-          <CardTitle className="font-playfair text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-            {post.title}
-          </CardTitle>
-        </div>
+        {/* A real screenshot when one exists — falls back to a typographic
+           cover (the project name) only if a thumbnail is missing. The
+           title itself is line-clamped so a long name can never overflow
+           its box, on either version of the cover. */}
+        {post.thumbnail ? (
+          <div
+            className={cn(
+              "relative w-full bg-muted/60 dark:bg-muted/20 overflow-hidden",
+              isCompact ? "h-40" : "h-56 md:h-64"
+            )}
+          >
+            <Image
+              src={post.thumbnail.url}
+              alt={post.thumbnail.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover object-top"
+            />
+          </div>
+        ) : (
+          <div
+            className={cn(
+              "flex items-center justify-center bg-muted/60 dark:bg-muted/20 px-6 text-center",
+              isCompact ? "h-40" : "h-56 md:h-64"
+            )}
+          >
+            <CardTitle className="font-playfair text-2xl md:text-4xl font-bold tracking-tight leading-tight line-clamp-3">
+              {post.title}
+            </CardTitle>
+          </div>
+        )}
 
         <CardContent className="px-4 py-3 md:px-5 md:py-4 flex flex-col">
           <div className="flex items-start justify-between gap-3 mb-2">
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2 flex-1 min-w-0">
+              {post.thumbnail && (
+                <CardTitle className="text-base md:text-lg font-semibold tracking-tight leading-snug line-clamp-2">
+                  {post.title}
+                </CardTitle>
+              )}
               <div className="flex items-center gap-2 flex-wrap">
                 <CategoryBadge category={post.category} />
                 {post.projectType && (
