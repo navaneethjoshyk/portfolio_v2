@@ -227,7 +227,7 @@ B12Feed is live and in active use.
     title: "MediGuru \u2014 Telehealth Marketing Site",
     slug: "mediguru",
     status: "published",
-    featured: false,
+    featured: true,
     type: "project",
     category: "Healthcare",
     projectType: "Client work",
@@ -660,114 +660,6 @@ The prototype is a real full-stack build rather than a static mockup: JWT authen
         content: `## Outcome
 
 In testing, the onboarding flow read as clear and approachable for a completely new product category — validating that plain, encouraging copy and a step-by-step structure can do a lot of the trust-building work that a novel material otherwise has to earn on its own.`,
-      },
-    ],
-  },
-  {
-    id: "med-connect",
-    title: "Med Connect",
-    slug: "med-connect",
-    status: "published",
-    featured: true,
-    type: "project",
-    category: "Healthcare",
-    projectType: "Academic",
-    thumbnail: {
-      url: "/projects/med-connect/cover.png",
-      alt: "Med Connect cover",
-    },
-    heroImages: [
-      { url: "/projects/med-connect/high-fi-1.jpg", alt: "Med Connect high-fidelity screen" },
-      { url: "/projects/med-connect/high-fi-2.png", alt: "Med Connect high-fidelity screen" },
-    ],
-    figmaLinks: [
-      {
-        label: "View Figma Case Study",
-        url: "https://www.figma.com/design/0VtyHDyTOltnMRCJTssPnj/Medical?node-id=580-577&t=BjylY3zLe8RCh8p0-1",
-      },
-    ],
-    excerpt:
-      "A B2B healthcare platform that unifies scattered patient records and referrals into one secure, real-time view for specialists.",
-    createdAt: "2025-09-05T00:00:00.000Z",
-    updatedAt: "2025-12-18T00:00:00.000Z",
-    viewCount: 0,
-    cells: [
-      {
-        id: "med-connect-1",
-        type: "markdown",
-        order: 1,
-        content: `Med Connect tackles a familiar healthcare problem: information scattered across systems, with no holistic view for the specialists who need it. The goal was to unify records and referrals behind a single, secure interface without burying anyone in medical jargon.
-
-- **Role:** Lead UI/UX, Frontend Architecture
-- **Tools:** Figma, Next.js, TypeScript
-- **Timeline:** September – December 2025`,
-      },
-      {
-        id: "med-connect-2",
-        type: "markdown",
-        order: 2,
-        content: `## The Problem
-
-Healthcare info is scattered, making a holistic view nearly impossible. The objective was to streamline referrals and provide instant, secure access to unified health metrics — unifying records with real-time communication between providers.`,
-      },
-      {
-        id: "med-connect-3",
-        type: "markdown",
-        order: 3,
-        content: `## How Might We
-
-- Create a seamless handover for specialists?
-- Ensure data is secure yet accessible?
-- Translate complex medical jargon into visuals?`,
-      },
-      {
-        id: "med-connect-4",
-        type: "image",
-        order: 4,
-        content: {
-          url: "/projects/med-connect/high-fi-1.jpg",
-          alt: "Med Connect high-fidelity interface",
-        },
-      },
-      {
-        id: "med-connect-5",
-        type: "markdown",
-        order: 5,
-        content: `## Usability Testing
-
-The usability round tested the marketing and informational site — navigation, findability, and copy clarity — rather than the referral-handoff workflow itself, which wasn't built out far enough yet to test directly. Five participants ran through a five-task script:
-
-1. **Find the Contact Us page** — all 5 found it quickly with no confusion.
-2. A follow-up task surfaced CTA confusion: participants weren't sure where a call-to-action would take them and struggled to navigate back. **Fix:** the destination was redesigned to read as an extension of the same page rather than a separate one.
-3. **Navigate to Services and list what's offered** — all 5 found the section and listed the services easily.
-4. A comprehension check on the UX writing.
-5. An open-ended best/worst impression — participants praised the color palette and clarity of the copy, with the CTA confusion (since addressed) as the only real criticism.`,
-      },
-      {
-        id: "med-connect-6",
-        type: "image",
-        order: 6,
-        content: {
-          url: "/projects/med-connect/low-fi-1.jpeg",
-          alt: "Med Connect low-fidelity wireframes",
-        },
-      },
-      {
-        id: "med-connect-7",
-        type: "image",
-        order: 7,
-        content: {
-          url: "/projects/med-connect/high-fi-2.png",
-          alt: "Med Connect high-fidelity interface",
-        },
-      },
-      {
-        id: "med-connect-8",
-        type: "markdown",
-        order: 8,
-        content: `## Outcome
-
-The redesigned handover flow and clarified CTA turned a scattered set of referral touchpoints into something specialists could move through without hesitation — with the color palette and copy clarity called out specifically in testing.`,
       },
     ],
   },

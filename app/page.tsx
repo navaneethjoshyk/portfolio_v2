@@ -10,7 +10,7 @@ import Link from "next/link";
 // (a live client build, a full-stack capstone, a healthcare case study)
 // for the homepage instead of just taking the first three in the array.
 const processedPosts = PostsApi.processStaticPosts(posts);
-const FEATURED_IDS = ["b12feed", "infinite-housing", "med-connect"];
+const FEATURED_IDS = ["b12feed", "infinite-housing", "mediguru"];
 const featuredPosts = FEATURED_IDS.map((id) =>
   processedPosts.find((post) => post.id === id)
 ).filter((post): post is NonNullable<typeof post> => Boolean(post));
