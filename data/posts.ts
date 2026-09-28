@@ -556,7 +556,7 @@ The interface moved through low, mid, and high-fidelity passes, tightening the v
     projectType: "Academic",
     thumbnail: {
       url: "/projects/infinite-housing/cover.png",
-      alt: "Infinite Housing cover",
+      alt: "Infinite Housing dashboard, showing profile, current training module, and license status",
     },
     heroImages: [
       { url: "/projects/infinite-housing/dashboard.png", alt: "Infinite Housing dashboard screen" },
