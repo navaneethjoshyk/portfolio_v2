@@ -232,9 +232,13 @@ B12Feed is live and in active use.
     category: "Healthcare",
     projectType: "Client work",
     thumbnail: {
-      url: "/og-image.png",
-      alt: "MediGuru marketing site case study",
+      url: "/projects/mediguru/full-page.png",
+      alt: "MediGuru marketing site, full page",
     },
+    heroImages: [
+      { url: "/projects/mediguru/full-page.png", alt: "MediGuru marketing site, full page" },
+      { url: "/projects/mediguru/hero.png", alt: "MediGuru hero section" },
+    ],
     excerpt:
       "Redesigning the public marketing site for a HIPAA-compliant telehealth platform \u2014 written to persuade the hospitals that buy it, not the patients and doctors who use it.",
     createdAt: "2022-01-01T00:00:00.000Z",
@@ -254,9 +258,18 @@ B12Feed is live and in active use.
 - **Timeline:** Jan 2022 \u2013 Aug 2024 (MediGuru tenure)`,
       },
       {
+        id: "mediguru-img-fullpage",
+        type: "image",
+        order: 2,
+        content: {
+          url: "/projects/mediguru/full-page.png",
+          alt: "MediGuru marketing site, full page from hero to partner logos",
+        },
+      },
+      {
         id: "mediguru-2",
         type: "markdown",
-        order: 2,
+        order: 3,
         content: `## The Brief
 
 The people who use MediGuru are patients and clinicians, but the people who buy it are hospitals. So the website had a different job from the app: persuade an organization that the platform fits its clinical workflow, protects patient data, and works with the systems it already runs.
@@ -274,7 +287,7 @@ The page had to answer three kinds of buyer:
       {
         id: "mediguru-3",
         type: "markdown",
-        order: 3,
+        order: 4,
         content: `## Page Structure
 
 A hospital buyer reads the page to answer a set of questions, so I ordered the sections as one continuous case: the problem first, then what the product does, then the proof a cautious buyer needs before booking a demo.
@@ -288,9 +301,36 @@ A hospital buyer reads the page to answer a set of questions, so I ordered the s
 - **Technology and partners** answers "Can they deliver?" \u2014 a capabilities list and names buyers already know.`,
       },
       {
-        id: "mediguru-4",
+        id: "mediguru-img-hero",
+        type: "image",
+        order: 5,
+        content: {
+          url: "/projects/mediguru/hero.png",
+          alt: "MediGuru hero section: Enabling healthcare providers to take that extra step",
+        },
+      },
+      {
+        id: "mediguru-img-radical",
+        type: "image",
+        order: 6,
+        content: {
+          url: "/projects/mediguru/radical-change.png",
+          alt: "MediGuru radical-change section, showing patient needs and provider needs as two equal columns",
+        },
+      },
+      {
+        id: "mediguru-img-behavioral",
+        type: "image",
+        order: 7,
+        content: {
+          url: "/projects/mediguru/behavioral-health.png",
+          alt: "MediGuru behavioral-health section with an 'upto 1%' stat callout",
+        },
+      },
+      {
+        id: "mediguru-4a",
         type: "markdown",
-        order: 4,
+        order: 8,
         content: `## Key Design Decisions
 
 ### Two audiences, one split screen
@@ -299,9 +339,22 @@ The platform only works if it serves both sides of the visit, so the problem sta
 
 ### Navy for trust, green only for action
 
-Healthcare buyers are cautious, so the base palette is a calm clinical navy on light, airy backgrounds. Green has one job: every call to action on the page is green, from "See it in action!" to "Know more." Because nothing else uses that color, the next step always stands out without needing a louder layout.
-
-### Illustrations to make software concrete
+Healthcare buyers are cautious, so the base palette is a calm clinical navy on light, airy backgrounds. Green has one job: every call to action on the page is green, from "See it in action!" to "Know more." Because nothing else uses that color, the next step always stands out without needing a louder layout.`,
+      },
+      {
+        id: "mediguru-img-telehealth",
+        type: "image",
+        order: 9,
+        content: {
+          url: "/projects/mediguru/telehealth-features.png",
+          alt: "MediGuru telehealth-features section with flat illustrations and a green call-to-action button",
+        },
+      },
+      {
+        id: "mediguru-4b",
+        type: "markdown",
+        order: 10,
+        content: `### Illustrations to make software concrete
 
 "Clinical workflow automation" means very little on its own. I paired each capability with a flat illustration of the moment it matters: a doctor on a video call beside an appointment card, or a team moving through a checklist. The rows alternate left and right so a long page keeps a steady rhythm, and each block stays short enough to scan.
 
@@ -314,7 +367,7 @@ The page closes with partner logos \u2014 Redox, Azure, athenahealth, and Micros
       {
         id: "mediguru-5",
         type: "markdown",
-        order: 5,
+        order: 11,
         content: `## Outcome
 
 The redesigned site launched as MediGuru's public face to hospitals. I didn't have access to analytics after launch, so I can't point to numbers here \u2014 that's a gap in how I closed this project out, not a result I'm claiming. Next time I'd agree on success measures with the client before designing, starting with:
@@ -326,7 +379,7 @@ The redesigned site launched as MediGuru's public face to hospitals. I didn't ha
       {
         id: "mediguru-6",
         type: "markdown",
-        order: 6,
+        order: 12,
         content: `## What I'd Do Differently
 
 | Area | Change | Why |
