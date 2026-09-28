@@ -201,9 +201,19 @@ Once an admin is signed in, the console is where B12Feed's actual operation happ
         },
       },
       {
-        id: "b12feed-20",
+        id: "b12feed-accessibility",
         type: "markdown",
         order: 20,
+        content: `## Catching a Contrast Issue
+
+Early on, several buttons and some body text used a gray palette that looked clean but didn't hold up against WCAG 2.1 AA — the gray text and gray buttons weren't distinct enough from their backgrounds. Running the palette through an online contrast checker confirmed it: several text/background and button pairings were failing. I went back and adjusted the palette until every pairing that had failed cleared the AA threshold, then re-checked each one to confirm.
+
+I don't have before screenshots of the original palette — it was caught and corrected before anything shipped, so there's no "before" version to show, just the process.`,
+      },
+      {
+        id: "b12feed-20",
+        type: "markdown",
+        order: 21,
         content: `## Team & My Role
 
 - **Design** — Owned end to end by me: flows, states, and the visual system across the admin console.
