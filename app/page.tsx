@@ -18,22 +18,40 @@ const featuredPosts = FEATURED_IDS.map((id) =>
 export default function Home() {
   return (
     <>
-      {/* Full-screen Matrix Shader Background — dark mode only, purely
-         decorative. Sits in normal document flow (not fixed) so it scrolls
-         away with the rest of the page instead of staying pinned behind the
-         content below, which used to let the hero text show through the
-         cards. In light mode this renders nothing, which is why the
-         sections below can't depend on it for content. */}
-      <MatrixShaderBackground
-        className="dark:block hidden"
-        name="Navaneeth Joshy K"
-        title="UI/UX Designer & Frontend Developer"
-        skills="Figma • React • Tailwind CSS"
-        interests="UI/UX Design • Accessibility • Web Development"
-      />
+      {/* Matrix shader — dark mode only, purely decorative, and fixed
+         behind the whole page so the animation runs throughout as you
+         scroll. Everything readable sits on solid surfaces above it (the
+         dark: panel classes below), so the moving background never ends up
+         behind body text. */}
+      <MatrixShaderBackground className="dark:block hidden" />
 
       <div className="relative z-10 flex flex-col gap-16 pb-8">
-        <section className="space-y-4 pt-4 dark:pt-0">
+        {/* Dark-mode intro screen over the animation. Scrolls away
+           normally; the negative top margin cancels the layout's top
+           padding so it fills the first screen below the 4rem header. */}
+        <section
+          aria-label="Introduction"
+          className="hidden dark:flex -mt-8 md:-mt-12 h-[calc(100vh-4rem)] items-center justify-center text-center"
+        >
+          <div className="space-y-4 px-8">
+            {/* Not an h1 — the page's one h1 is in the section below,
+               which is also what light mode shows. */}
+            <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight animate-fade-in-300">
+              Navaneeth Joshy K
+            </p>
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light animate-fade-in-500">
+              UI/UX Designer &amp; Frontend Developer
+            </p>
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-400 font-light animate-fade-in-700">
+              Figma • React • Tailwind CSS
+            </p>
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-400 font-light animate-fade-in-900">
+              UI/UX Design • Accessibility • Web Development
+            </p>
+          </div>
+        </section>
+
+        <section className="space-y-4 pt-4 dark:bg-background dark:border dark:rounded-xl dark:p-6">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
             Navaneeth Joshy K
           </h1>
@@ -47,7 +65,7 @@ export default function Home() {
         </section>
 
         <section className="space-y-6">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-4 dark:bg-background dark:border dark:rounded-xl dark:px-6 dark:py-3">
             <h2 className="text-2xl font-bold tracking-tight">
               Selected Work
             </h2>
@@ -62,7 +80,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="flex flex-col sm:flex-row sm:items-center gap-4 pt-4 border-t">
+        <section className="flex flex-col sm:flex-row sm:items-center gap-4 pt-4 border-t dark:bg-background dark:border dark:rounded-xl dark:p-6">
           <p className="text-base font-medium flex-1 pt-4 sm:pt-0">
             Open to new opportunities in UI/UX design and front-end
             development.
@@ -77,7 +95,9 @@ export default function Home() {
          hero), so it stays the fastest way to reach these links even
          though the footer is intentionally hidden on this page. */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-auto animate-fade-in-1000">
-        <div className="flex items-center gap-6 text-muted-foreground text-sm font-medium bg-background/80 backdrop-blur px-4 py-2 rounded-full border shadow-sm">
+        {/* Solid background, no backdrop-blur: blurring over a moving
+           WebGL canvas makes the browser re-blur this area every frame. */}
+        <div className="flex items-center gap-6 text-muted-foreground text-sm font-medium bg-background px-4 py-2 rounded-full border shadow-sm">
           <a
             href="https://github.com/navaneethjoshyk"
             target="_blank"

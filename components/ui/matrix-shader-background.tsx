@@ -22,69 +22,47 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-// Tracks whether the hero is actually on screen so the WebGL render loop can
-// stop once it's scrolled past — this is a full-viewport shader re-rendering
-// every frame, and letting that keep running while the rest of the page
-// scrolls by is what was causing the scroll jank/"hang".
-function useInView<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [inView, setInView] = useState(true);
+// The matrix rain doesn't need 60–144fps to look smooth, and rendering a
+// full-screen shader at the display's full refresh rate competes with
+// scrolling for the GPU. Rendering on demand at a fixed 30fps halves (or
+// better) that cost and keeps scrolling responsive.
+const TARGET_FPS = 30;
+
+function FrameLimiter() {
+  const invalidate = useThree((state) => state.invalidate);
 
   useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
+    const id = window.setInterval(() => invalidate(), 1000 / TARGET_FPS);
+    return () => window.clearInterval(id);
+  }, [invalidate]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, inView };
+  return null;
 }
 
 interface MatrixShaderBackgroundProps {
   className?: string;
-  name?: string;
-  title?: string;
-  skills?: string;
-  interests?: string;
 }
 
+/**
+ * Full-page animated background. Fixed to the viewport so it sits behind
+ * the entire page as you scroll — it's purely decorative, so the hero text
+ * and every content block live in the page itself (app/page.tsx), on solid
+ * surfaces where they need to stay readable.
+ */
 export default function MatrixShaderBackground({
   className = "",
-  name = "Navaneeth Joshy K",
-  title = "UI/UX Designer & Frontend Developer",
-  skills = "Figma • React • Tailwind CSS",
-  interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
     <div
-      ref={ref}
       className={className}
+      aria-hidden="true"
       style={{
-        position: "relative",
-        // The page content sits inside a centered, max-width container
-        // (see app/layout.tsx), so a plain 100% width here would only
-        // span that container, not the full desktop viewport. This is
-        // the standard "full-bleed" trick for breaking a child out of a
-        // centered container regardless of the container's own width.
-        width: "100vw",
-        marginLeft: "calc(50% - 50vw)",
-        marginRight: "calc(50% - 50vw)",
-        height: "100vh",
+        position: "fixed",
+        inset: 0,
         zIndex: 0,
         pointerEvents: "none",
-        overflow: "hidden",
-        // Promotes this to its own compositing layer so scrolling the
-        // page doesn't force the browser to repaint the WebGL canvas on
-        // every scroll frame.
-        willChange: "transform",
       }}
     >
       <Canvas
@@ -93,45 +71,29 @@ export default function MatrixShaderBackground({
           powerPreference: "high-performance",
           alpha: true,
         }}
-        dpr={[1, 2]}
+        // 1x resolution: the effect is deliberately blocky and grainy, so
+        // rendering it at 2x on high-DPI screens quadrupled the GPU work
+        // for no visible gain.
+        dpr={1}
+        // Frames are driven by FrameLimiter below (30fps) instead of every
+        // display refresh. With reduced motion, nothing drives new frames,
+        // so it renders once and stays still.
+        frameloop="demand"
         camera={{ position: [0, 0, 1], fov: 75 }}
         className="w-full h-full"
         style={{ width: "100%", height: "100%", pointerEvents: "auto" }}
-        // Stop rendering entirely once the hero has scrolled out of view
-        // (or once motion is frozen for prefers-reduced-motion) instead
-        // of paying for a full-screen shader every frame regardless of
-        // whether anyone can see it — this is what was causing scroll
-        // to feel like it was hanging.
-        frameloop={inView && !reducedMotion ? "always" : "demand"}
       >
         <color attach="background" args={["#000000"]} />
         <MatrixShaderPlane reducedMotion={reducedMotion} />
+        {!reducedMotion && <FrameLimiter />}
       </Canvas>
-
-      {/* Text Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="text-center space-y-4 px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight animate-fade-in-300">
-            {name}
-          </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light animate-fade-in-500">
-            {title}
-          </p>
-          <p className="text-lg md:text-xl lg:text-2xl text-gray-400 font-light animate-fade-in-700">
-            {skills}
-          </p>
-          <p className="text-lg md:text-xl lg:text-2xl text-gray-400 font-light animate-fade-in-900">
-            {interests}
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
 
 function MatrixShaderPlane({ reducedMotion }: { reducedMotion: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const { viewport, size } = useThree();
+  const { viewport } = useThree();
 
   const vertexShader = `
     varying vec2 vUv;
@@ -282,12 +244,15 @@ function MatrixShaderPlane({ reducedMotion }: { reducedMotion: boolean }) {
     }
   `;
 
-  // Uniforms setup
+  // Uniforms are created once. Resolution is kept current in useFrame
+  // instead of rebuilding this object on every resize — on mobile, the
+  // address bar showing/hiding while scrolling fires a resize each time,
+  // and rebuilding the uniforms then caused a visible hitch.
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      uResolution: { value: new THREE.Vector2(size.width, size.height) },
+      uResolution: { value: new THREE.Vector2(1, 1) },
       uFadeIn: { value: 0 },
       // Matrix Palette with subtle red accents
       uColorA: { value: new THREE.Color("#000000") }, // Pure Black Background
@@ -295,10 +260,15 @@ function MatrixShaderPlane({ reducedMotion }: { reducedMotion: boolean }) {
       uColorC: { value: new THREE.Color("#C0C0C0") }, // Light Gray Highlights
       uColorD: { value: new THREE.Color("#ff4444") }, // Red for accented boxes
     }),
-    [size]
+    []
   );
 
   useFrame((state) => {
+    if (meshRef.current) {
+      const material = meshRef.current.material as THREE.ShaderMaterial;
+      material.uniforms.uResolution.value.set(state.size.width, state.size.height);
+    }
+
     // Respect prefers-reduced-motion: freeze the shader on a settled frame
     // (fully faded in, no further updates) instead of animating forever.
     if (reducedMotion) {
@@ -334,7 +304,9 @@ function MatrixShaderPlane({ reducedMotion }: { reducedMotion: boolean }) {
 
   return (
     <mesh ref={meshRef} scale={[viewport.width, viewport.height, 1]}>
-      <planeGeometry args={[1, 1, 64, 64]} />
+      {/* A flat full-screen quad — the effect is all in the fragment
+          shader, so the 64x64 subdivided mesh was unneeded vertex work. */}
+      <planeGeometry args={[1, 1]} />
       <shaderMaterial
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
