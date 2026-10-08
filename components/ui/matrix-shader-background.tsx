@@ -22,6 +22,29 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+// Tracks whether the hero is actually on screen so the WebGL render loop can
+// stop once it's scrolled past — this is a full-viewport shader re-rendering
+// every frame, and letting that keep running while the rest of the page
+// scrolls by is what was causing the scroll jank/"hang".
+function useInView<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, inView };
+}
+
 interface MatrixShaderBackgroundProps {
   className?: string;
   name?: string;
@@ -38,17 +61,30 @@ export default function MatrixShaderBackground({
   interests = "UI/UX Design • Accessibility • Web Development",
 }: MatrixShaderBackgroundProps) {
   const reducedMotion = usePrefersReducedMotion();
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
     <div
+      ref={ref}
       className={className}
       style={{
         position: "relative",
-        width: "100%",
+        // The page content sits inside a centered, max-width container
+        // (see app/layout.tsx), so a plain 100% width here would only
+        // span that container, not the full desktop viewport. This is
+        // the standard "full-bleed" trick for breaking a child out of a
+        // centered container regardless of the container's own width.
+        width: "100vw",
+        marginLeft: "calc(50% - 50vw)",
+        marginRight: "calc(50% - 50vw)",
         height: "100vh",
         zIndex: 0,
         pointerEvents: "none",
         overflow: "hidden",
+        // Promotes this to its own compositing layer so scrolling the
+        // page doesn't force the browser to repaint the WebGL canvas on
+        // every scroll frame.
+        willChange: "transform",
       }}
     >
       <Canvas
@@ -61,6 +97,12 @@ export default function MatrixShaderBackground({
         camera={{ position: [0, 0, 1], fov: 75 }}
         className="w-full h-full"
         style={{ width: "100%", height: "100%", pointerEvents: "auto" }}
+        // Stop rendering entirely once the hero has scrolled out of view
+        // (or once motion is frozen for prefers-reduced-motion) instead
+        // of paying for a full-screen shader every frame regardless of
+        // whether anyone can see it — this is what was causing scroll
+        // to feel like it was hanging.
+        frameloop={inView && !reducedMotion ? "always" : "demand"}
       >
         <color attach="background" args={["#000000"]} />
         <MatrixShaderPlane reducedMotion={reducedMotion} />
