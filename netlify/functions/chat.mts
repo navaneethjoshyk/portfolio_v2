@@ -1,4 +1,6 @@
-// POST /api/chat: the portfolio chatbot's backend.
+// POST /api/chat: backend for the homepage chat's optional typed questions.
+// The chat only shows a typing box (and so only calls this) when the site is
+// built with CHAT_AI_ENABLED=true; preset questions never reach this code.
 //
 // Runs as a Netlify Function so the Claude API key stays on the server and
 // never reaches the browser. Needs one environment variable set in Netlify

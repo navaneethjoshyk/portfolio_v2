@@ -5,6 +5,7 @@ import { posts } from "@/data/posts";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChatWidget } from "@/components/chat/chat-widget";
+import { buildFaq } from "@/lib/chat-faq";
 
 // Process static posts once, same pattern used on /projects and the
 // case-study page — then hand-pick the three that best represent range
@@ -15,6 +16,12 @@ const FEATURED_IDS = ["b12feed", "infinite-housing", "mediguru"];
 const featuredPosts = FEATURED_IDS.map((id) =>
   processedPosts.find((post) => post.id === id)
 ).filter((post): post is NonNullable<typeof post> => Boolean(post));
+
+// Preset chat questions, answered from site data. Typed AI questions are
+// off unless CHAT_AI_ENABLED=true is set at build time (needs the Claude
+// API key too; see README → Chatbot).
+const chatFaq = buildFaq(featuredPosts);
+const chatAiEnabled = process.env.CHAT_AI_ENABLED === "true";
 
 export default function Home() {
   return (
@@ -126,9 +133,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* AI assistant that answers visitor questions from this site's
-         content (components/chat, netlify/functions/chat.mts). */}
-      <ChatWidget />
+      {/* Chat that answers visitor questions from this site's content
+         (components/chat, lib/chat-faq.ts). */}
+      <ChatWidget faq={chatFaq} aiEnabled={chatAiEnabled} />
     </>
   );
 }

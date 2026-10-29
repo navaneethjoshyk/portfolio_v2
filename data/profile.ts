@@ -41,6 +41,11 @@ export const profile = {
   intro:
     "UI/UX Designer and Front-End Developer with 2+ years of experience designing and building digital products end to end — from user research and wireframes to production front-end code — across healthcare, telecom, and non-profit, plus academic and concept work in fintech and housing. I combine UX design with front-end development: design-to-dev handoffs that work, accessibility built in from the start (WCAG 2.1 AA), and a good sense of why something isn't working before I redesign it.",
 
+  // Third-person version of `intro`, used by the chatbot's preset answers.
+  // Keep the two saying the same thing.
+  summary:
+    "Navaneeth is a UI/UX Designer and Front-End Developer with 2+ years of experience designing and building digital products end to end, from user research and wireframes to production front-end code. He has worked across healthcare, telecom, and non-profit, plus academic and concept work in fintech and housing, and builds accessibility in from the start (WCAG 2.1 AA).",
+
   experience: [
     {
       role: "Graduate Research Assistant",

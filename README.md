@@ -2,7 +2,7 @@
 
 Personal portfolio site for [Navaneeth Joshy K](https://www.linkedin.com/in/navaneethjoshyk/) — UX/UI Designer & Front-End Developer, based in Canada.
 
-Live structure: a full-screen animated hero on the home page, and a Projects page with detailed UI/UX case studies. Built with Next.js and Tailwind CSS. Every project is hardcoded as static data; the only server code is one Netlify Function that powers the homepage's AI chatbot (see [Chatbot](#chatbot)).
+Live structure: a full-screen animated hero on the home page, and a Projects page with detailed UI/UX case studies. Built with Next.js and Tailwind CSS. Every project is hardcoded as static data; the only server code is an optional Netlify Function for the homepage chat's AI answers (see [Chatbot](#chatbot)).
 
 ## Origin
 
@@ -42,7 +42,8 @@ netlify/
 public/
   projects/<slug>/            # Screenshots and cover images, one folder per project
 lib/
-  chat-knowledge.ts           # Builds the chatbot's prompt from data/profile.ts + data/posts.ts
+  chat-faq.ts                 # Chat's preset questions + answers, built from site data
+  chat-knowledge.ts           # Builds the optional AI prompt from data/profile.ts + data/posts.ts
   posts-api.ts                # Static content post-processing (unescaping markdown/cell content)
   constants.ts                # Post type definitions
 types/
@@ -84,7 +85,7 @@ To add or update a project:
 
 Images are rendered at their natural aspect ratio (no forced cropping) — the thumbnail on the project card and the images inside a case study both use `object-contain`, so portrait screenshots, wide screenshots, and square logos all display in full rather than getting cut off.
 
-To change the About page (bio, experience, skills, education, contact), edit **`data/profile.ts`**. The chatbot reads the same file, so it stays in sync automatically. The home page's name/title/skills are in `app/page.tsx`.
+To change the About page (bio, experience, skills, education, contact), edit **`data/profile.ts`**. The chat's answers come from the same file, so they stay in sync automatically. The home page's name/title/skills are in `app/page.tsx`.
 
 ## Development
 
@@ -98,23 +99,25 @@ pnpm lint
 
 ## Chatbot
 
-The homepage has an AI assistant that answers visitor questions about experience, skills, projects, and contact details. It uses Claude (model `claude-haiku-5-5`) through the Claude API.
+The homepage has a chat panel ("Ask about Navaneeth") that answers visitor questions.
 
-- **No separate knowledge base to maintain.** `lib/chat-knowledge.ts` builds its prompt from `data/profile.ts` and `data/posts.ts`, so whatever the site says, the chatbot says. It's instructed to answer only from those facts, never invent numbers or dates, and send personal questions (salary, work authorization, etc.) to email.
-- **The API key never reaches the browser.** The widget calls `/api/chat`, a Netlify Function that holds the key server-side.
-- **Cost controls:** Netlify rate-limits each visitor to 8 questions/minute (configured in the function), conversations are capped at 12 questions, replies at 500 tokens, and the shared prompt is cached. Typical cost is a fraction of a cent per question.
+**Preset questions (on by default, no setup).** Eight questions covering who he is, experience, skills, projects, accessibility, education, availability, and contact. Answers are generated at build time by `lib/chat-faq.ts` from `data/profile.ts` and the projects featured on the homepage, so they update automatically when that content changes. They're answered instantly in the browser: no API, no cost. To add or change a question, edit `lib/chat-faq.ts`.
 
-### Setup (once)
+**Typed AI questions (optional, off by default).** Visitors can also type their own questions, answered by Claude (`claude-haiku-5-5`) through the Netlify Function at `/api/chat`. `lib/chat-knowledge.ts` builds its prompt from the same site data, and it's instructed to answer only from those facts, never invent numbers or dates, and send personal questions (salary, work authorization, etc.) to email. The API key stays server-side. Netlify rate-limits each visitor to 8 questions/minute, conversations are capped at 12 questions, and replies at 500 tokens. Typical cost is a fraction of a cent per question.
+
+### Turning on typed AI questions
 
 1. Create an API key at [platform.claude.com](https://platform.claude.com) and add billing credit. Set a monthly spend limit there as a backstop.
-2. In Netlify: **Site configuration → Environment variables → Add a variable**: key `ANTHROPIC_API_KEY`, value = your key. Scope it to **Functions**.
-3. Redeploy (Deploys → Trigger deploy). The deploy log should list the `chat` function and its rate-limit rule.
+2. In Netlify, **Site configuration → Environment variables**, add:
+   - `ANTHROPIC_API_KEY` = your key (scope: **Functions**)
+   - `CHAT_AI_ENABLED` = `true` (scope: **Builds**)
+3. Redeploy (Deploys → Trigger deploy). The typing box appears in the chat panel.
 
-Optional variables: `ANTHROPIC_MODEL` (default `claude-haiku-5-5`) and `ANTHROPIC_VERSION` (default `2026-10-21`).
+To turn it off again, delete `CHAT_AI_ENABLED` and redeploy. Optional variables: `ANTHROPIC_MODEL` (default `claude-haiku-5-5`) and `ANTHROPIC_VERSION` (default `2026-10-21`).
 
-### Testing locally
+### Testing AI questions locally
 
-`pnpm dev` doesn't run Netlify Functions, so the chat will say it's unavailable there. To test the chatbot locally, use the Netlify CLI, which runs the site and the function together and pulls the env var from your Netlify site:
+`pnpm dev` doesn't run Netlify Functions. Use the Netlify CLI, which runs the site and the function together and pulls the env vars from your Netlify site:
 
 ```bash
 npm install -g netlify-cli
@@ -130,4 +133,4 @@ Google Analytics 4 is wired up in `app/layout.tsx` via `next/script`, using the 
 
 ## Deployment
 
-`next.config.ts` enables static export (`output: "export"`) only for production builds, so `pnpm build` produces a static `out/` directory. The site is deployed on Netlify (see `netlify.toml`), which also deploys the chatbot's function from `netlify/functions/`. On any other static host the site works the same, minus the chatbot.
+`next.config.ts` enables static export (`output: "export"`) only for production builds, so `pnpm build` produces a static `out/` directory. The site is deployed on Netlify (see `netlify.toml`), which also deploys the chatbot's function from `netlify/functions/`. On any other static host the site works the same, including the chat's preset questions; only the optional AI answers need Netlify.
