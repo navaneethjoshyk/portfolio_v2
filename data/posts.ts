@@ -1,7 +1,7 @@
 // Static project data — hardcoded, no backend / CMS involved.
 // Edit this file directly to add, remove, or update projects.
 
-import { Post } from "@/types/post";
+import type { Post } from "../types/post";
 
 export const posts: Post[] = [
   {

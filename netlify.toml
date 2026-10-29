@@ -1,6 +1,11 @@
-# This site is a fully static export (see next.config.ts — output: "export"
-# for production builds). No SSR, API routes, or Netlify Functions are used.
+# The site itself is a fully static export (see next.config.ts — output:
+# "export" for production builds). The one piece of server code is the
+# chatbot's Netlify Function in netlify/functions/chat.mts, which keeps the
+# Claude API key off the client.
 
 [build]
   command = "pnpm run build"
   publish = "out"
+
+[functions]
+  directory = "netlify/functions"

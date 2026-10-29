@@ -4,6 +4,7 @@ import { PostsApi } from "@/lib/posts-api";
 import { posts } from "@/data/posts";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ChatWidget } from "@/components/chat/chat-widget";
 
 // Process static posts once, same pattern used on /projects and the
 // case-study page — then hand-pick the three that best represent range
@@ -124,6 +125,10 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      {/* AI assistant that answers visitor questions from this site's
+         content (components/chat, netlify/functions/chat.mts). */}
+      <ChatWidget />
     </>
   );
 }

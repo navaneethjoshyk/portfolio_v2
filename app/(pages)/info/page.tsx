@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Metadata } from "next";
 import { AUTHOR_NAME } from "@/lib/site-config";
+import { profile } from "@/data/profile";
 
 const TITLE = "About";
 const DESCRIPTION = `About ${AUTHOR_NAME}, a UI/UX Designer and Front-End Developer based in Canada with 2+ years of experience across healthcare, telecom, and non-profit, plus academic and concept work in fintech and housing.`;
@@ -41,126 +42,48 @@ export default function AboutPage() {
               <div className="space-y-8">
                 <div className="prose prose-lg dark:prose-invert max-w-none">
                   <p className="text-lg leading-relaxed text-foreground">
-                    I&apos;m <strong>Navaneeth Joshy K</strong>, a UI/UX
-                    Designer and Front-End Developer with 2+ years of
-                    experience designing and building digital products end to
-                    end — from user research and wireframes to production
-                    front-end code — across healthcare, telecom, and
-                    non-profit, plus academic and concept work in fintech and
-                    housing. I combine UX design with front-end development:
-                    design-to-dev handoffs that work, accessibility built in
-                    from the start (WCAG 2.1 AA), and a good sense of why
-                    something isn&apos;t working before I redesign it.
+                    I&apos;m <strong>{profile.name}</strong>, a {profile.intro}
                   </p>
 
                   <h3 className="text-xl font-semibold mt-8 mb-3 tracking-tight">
                     Experience highlights
                   </h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>
-                      <strong>
-                        Graduate Research Assistant, Humber College
-                      </strong>{" "}
-                      (Jan 2026 – Present) — Supporting faculty-led research
-                      in web technologies and user experience design, using
-                      interviews, data analysis, and competitive benchmarking
-                      in an academic setting.
-                    </li>
-                    <li>
-                      <strong>
-                        Graphic Designer (UI/visual design across a
-                        50-screen platform), B12Feed
-                      </strong>{" "}
-                      (Jan 2026 – Present) — Own visual design for the
-                      platform: building a clear visual hierarchy and turning
-                      wireframes into high-fidelity Figma designs across
-                      three separate brand guidelines.
-                    </li>
-                    <li>
-                      <strong>Frontend Developer, B12Feed</strong> (Sept – Dec
-                      2025) — Built and maintained the platform&apos;s
-                      responsive React.js components, including the admin
-                      console shown in the case study below.
-                    </li>
-                    <li>
-                      <strong>Software &amp; UI/UX Lead, OHANA™</strong>{" "}
-                      (Sept 2024 – Sept 2025) — Led software and UI/UX work
-                      for a product team on an enterprise B2B telecom
-                      platform, managing a team of 4 developers. Ran design
-                      workshops, journey mapping, and usability tests that
-                      shaped 12+ design changes, and led UX-strategy and
-                      design-system work that improved task completion across
-                      3 core product flows.
-                    </li>
-                    <li>
-                      <strong>UI/UX Designer, MediGuru</strong> (Jan 2022 –
-                      Aug 2024) — Designed complete user experiences across 3
-                      core modules — onboarding, dashboards, and appointment
-                      booking — for a regulated healthcare SaaS platform, and
-                      built its brand identity guidelines and visual design
-                      tokens from scratch, cutting cross-platform design
-                      inconsistencies by 60%.
-                    </li>
+                    {profile.experience.map((job) => (
+                      <li key={`${job.org}-${job.role}`}>
+                        <strong>
+                          {job.role}, {job.org}
+                        </strong>{" "}
+                        ({job.dates}) — {job.summary}
+                      </li>
+                    ))}
                   </ul>
 
                   <h3 className="text-xl font-semibold mt-8 mb-3 tracking-tight">
                     Technical Expertise
                   </h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>
-                      <strong>Languages</strong>: HTML, CSS, JavaScript, Python
-                    </li>
-                    <li>
-                      <strong>Frameworks</strong>: React, Node.js, Tailwind
-                      CSS
-                    </li>
-                    <li>
-                      <strong>Design</strong>: Figma, Adobe XD, Illustrator,
-                      Photoshop, Framer, AI-powered design tools
-                    </li>
-                    <li>
-                      <strong>Practice</strong>: Wireframing & prototyping,
-                      design systems, UX research & usability testing, user
-                      journey mapping, user-centred & Lean UX, accessible
-                      design, Git
-                    </li>
+                    {profile.skills.map((group) => (
+                      <li key={group.label}>
+                        <strong>{group.label}</strong>: {group.items}
+                      </li>
+                    ))}
                   </ul>
 
                   <h3 className="text-xl font-semibold mt-8 mb-3 tracking-tight">
                     Education
                   </h3>
                   <div className="space-y-4">
-                    <div>
-                      <p>
-                        <strong>Humber College</strong>, Etobicoke, ON
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Postgraduate Certificate, Web Development · May 2025 –
-                        May 2026
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>Conestoga College</strong>, Kitchener, ON
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Postgraduate Certificate, Game &amp; Interactive Media
-                        Design · Interactive Media Management, Design &amp;
-                        Visual Communications · May 2024 – Dec 2024
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>
-                          Adi Shankara Institute of Engineering &amp;
-                          Technology
-                        </strong>
-                        , Kalady, India
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        B.Tech, Computer Science · June 2018 – June 2022
-                      </p>
-                    </div>
+                    {profile.education.map((edu) => (
+                      <div key={edu.school}>
+                        <p>
+                          <strong>{edu.school}</strong>, {edu.location}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {edu.detail}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -170,24 +93,24 @@ export default function AboutPage() {
                   </h3>
                   <div className="space-y-4">
                     <p className="text-base text-muted-foreground max-w-prose">
-                      Open to UI/UX design and front-end development roles —
+                      Open to {profile.openTo} —
                       the fastest way to reach me is email, or take a look at
                       the full breakdown of my experience in my resume.
                     </p>
                     <div className="flex gap-3 flex-wrap">
                       <Button asChild className="font-medium">
-                        <Link href="mailto:navaneethjoshyk8@gmail.com">
+                        <Link href={`mailto:${profile.email}`}>
                           Email me
                         </Link>
                       </Button>
                       <Button variant="outline" asChild className="font-medium">
-                        <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <Link href={profile.links.resume} target="_blank" rel="noopener noreferrer">
                           Download Resume
                         </Link>
                       </Button>
                       <Button variant="outline" asChild className="font-medium">
                         <Link
-                          href="https://github.com/navaneethjoshyk"
+                          href={profile.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -196,7 +119,7 @@ export default function AboutPage() {
                       </Button>
                       <Button variant="outline" asChild className="font-medium">
                         <Link
-                          href="https://www.linkedin.com/in/navaneethjoshyk/"
+                          href={profile.links.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -205,7 +128,7 @@ export default function AboutPage() {
                       </Button>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      📍 Brampton, ON (GTA)
+                      📍 {profile.location}
                     </p>
                   </div>
                 </div>
